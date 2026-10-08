@@ -1,0 +1,291 @@
+import {
+  EmergencySignal,
+  Incident,
+  AnalysisResult,
+  WhatChangedEntry,
+} from '@/types';
+import { analyzeEmergencySignal } from '@/lib/ai/gemini';
+import { FULL_DEMO_REPORTS } from '@/lib/data/dataset';
+
+export interface StoreState {
+  incidents: Incident[];
+  rawReports: EmergencySignal[];
+  noiseReports: EmergencySignal[];
+  unverifiedReports: EmergencySignal[];
+  lastAnalysis: AnalysisResult | null;
+  activeDemoStep: number;
+}
+
+// Global server-safe in-memory state
+let globalStore: StoreState = {
+  incidents: [],
+  rawReports: [],
+  noiseReports: [],
+  unverifiedReports: [],
+  lastAnalysis: null,
+  activeDemoStep: 0,
+};
+
+export function getStore(): StoreState {
+  return globalStore;
+}
+
+export function resetStore(): void {
+  globalStore = {
+    incidents: [],
+    rawReports: [],
+    noiseReports: [],
+    unverifiedReports: [],
+    lastAnalysis: null,
+    activeDemoStep: 0,
+  };
+}
+
+/**
+ * Main ingestion handler passing each signal through ONE GEMINI AI
+ */
+export async function ingestSignal(signal: EmergencySignal): Promise<{
+  incident: Incident | null;
+  analysis: AnalysisResult;
+  isNewIncident: boolean;
+  isNoise: boolean;
+}> {
+  // Store raw signal
+  globalStore.rawReports.unshift(signal);
+
+  // 1. Run through ONE GEMINI AI
+  const analysis = await analyzeEmergencySignal(signal, globalStore.incidents);
+  globalStore.lastAnalysis = analysis;
+
+  // 2. Filter Noise
+  if (analysis.classification === 'non-emergency') {
+    globalStore.noiseReports.unshift(signal);
+    return {
+      incident: null,
+      analysis,
+      isNewIncident: false,
+      isNoise: true,
+    };
+  }
+
+  // 3. Track Unverified
+  if (analysis.classification === 'unverified') {
+    globalStore.unverifiedReports.unshift(signal);
+  }
+
+  // 4. Cluster / Update Existing Incident OR Create New
+  if (analysis.match.sameIncident && analysis.match.matchedIncidentId) {
+    const existingIndex = globalStore.incidents.findIndex(
+      (inc) => inc.id === analysis.match.matchedIncidentId
+    );
+
+    if (existingIndex !== -1) {
+      const existing = { ...globalStore.incidents[existingIndex] };
+      existing.signals = [signal, ...existing.signals];
+      existing.updatedAt = signal.timestamp;
+      existing.aiExplanations = analysis.explanations;
+
+      // Handle conflict in people count
+      if (
+        analysis.conflictDetection.hasConflict &&
+        analysis.people.affected !== null
+      ) {
+        const prevCount = existing.people.affected ?? 0;
+        const newCount = analysis.people.affected;
+
+        const changeEntry: WhatChangedEntry = {
+          id: `wc-${Date.now()}-${Math.random()}`,
+          timestamp: signal.timestamp,
+          type: 'people',
+          label: 'People Affected Count Updated',
+          from: prevCount,
+          to: newCount,
+          sourceSignalId: signal.id,
+          detail:
+            analysis.conflictDetection.explanation ||
+            `Count revised from ${prevCount} to ${newCount}`,
+        };
+        existing.whatChanged = [changeEntry, ...existing.whatChanged];
+        existing.people.affected = newCount;
+        existing.people.trapped = newCount;
+        existing.peopleHistory = [
+          ...existing.peopleHistory,
+          {
+            count: newCount,
+            timestamp: signal.timestamp,
+            label: `Reported via ${signal.source}`,
+          },
+        ];
+        existing.conflictCount += 1;
+      }
+
+      // Handle newly identified vulnerable individuals
+      if (analysis.people.vulnerable.length > 0) {
+        for (const vuln of analysis.people.vulnerable) {
+          const alreadyTracked = existing.people.vulnerable.some(
+            (v) => v.type === vuln.type
+          );
+          if (!alreadyTracked) {
+            existing.people.vulnerable = [...existing.people.vulnerable, vuln];
+            const changeEntry: WhatChangedEntry = {
+              id: `wc-${Date.now()}-${Math.random()}`,
+              timestamp: signal.timestamp,
+              type: 'vulnerable',
+              label: 'Vulnerable Person Identified',
+              detail: `+ ${vuln.type.toUpperCase()}: ${vuln.details}`,
+              sourceSignalId: signal.id,
+            };
+            existing.whatChanged = [changeEntry, ...existing.whatChanged];
+          }
+        }
+      }
+
+      // Handle Urgency Escalation
+      if (
+        (analysis.urgency === 'critical' && existing.urgency !== 'critical') ||
+        (analysis.urgency === 'high' && existing.urgency === 'medium')
+      ) {
+        const changeEntry: WhatChangedEntry = {
+          id: `wc-${Date.now()}-${Math.random()}`,
+          timestamp: signal.timestamp,
+          type: 'urgency',
+          label: 'Urgency Escalated',
+          from: existing.urgency.toUpperCase(),
+          to: analysis.urgency.toUpperCase(),
+          sourceSignalId: signal.id,
+          detail: analysis.explanations.whyCritical || 'Urgency level elevated based on incoming telemetry.',
+        };
+        existing.whatChanged = [changeEntry, ...existing.whatChanged];
+        existing.urgency = analysis.urgency;
+        existing.severity = analysis.severity;
+      }
+
+      // Handle Resources
+      const newResources = Array.from(
+        new Set([...existing.resources, ...analysis.resources])
+      );
+      if (newResources.length > existing.resources.length) {
+        const added = newResources.filter(
+          (r) => !existing.resources.includes(r)
+        );
+        const changeEntry: WhatChangedEntry = {
+          id: `wc-${Date.now()}-${Math.random()}`,
+          timestamp: signal.timestamp,
+          type: 'resource',
+          label: 'Emergency Resources Recommended',
+          detail: `AI advised addition of: ${added.join(', ')} (Human approval required)`,
+          sourceSignalId: signal.id,
+        };
+        existing.whatChanged = [changeEntry, ...existing.whatChanged];
+        existing.resources = newResources;
+      }
+
+      // Handle Status Updates (Rescue In Progress / Resolved)
+      if (analysis.status !== existing.status && analysis.status !== 'unverified') {
+        const changeEntry: WhatChangedEntry = {
+          id: `wc-${Date.now()}-${Math.random()}`,
+          timestamp: signal.timestamp,
+          type: 'status',
+          label: 'Operational Status Updated',
+          from: existing.status.replace(/_/g, ' ').toUpperCase(),
+          to: analysis.status.replace(/_/g, ' ').toUpperCase(),
+          sourceSignalId: signal.id,
+          detail:
+            analysis.status === 'resolved'
+              ? '✓ Everyone evacuated and accounted for. Incident resolved.'
+              : '✓ Rescue team reached location. Active extraction underway.',
+        };
+        existing.whatChanged = [changeEntry, ...existing.whatChanged];
+        existing.status = analysis.status;
+      }
+
+      // Update location landmarks if new ones were detected
+      if (analysis.location.landmarks.length > 0) {
+        existing.location.landmarks = Array.from(
+          new Set([...existing.location.landmarks, ...analysis.location.landmarks])
+        );
+      }
+
+      globalStore.incidents[existingIndex] = existing;
+      return {
+        incident: existing,
+        analysis,
+        isNewIncident: false,
+        isNoise: false,
+      };
+    }
+  }
+
+  // Create NEW Incident
+  const incNum = String(globalStore.incidents.length + 1).padStart(3, '0');
+  const newIncidentId = `INC-${incNum}`;
+
+  const initialChange: WhatChangedEntry = {
+    id: `wc-${Date.now()}`,
+    timestamp: signal.timestamp,
+    type: 'note',
+    label: 'Incident Record Created',
+    detail: `Initial signal ingested via ${signal.source.replace('_', ' ').toUpperCase()} from ${signal.sender}`,
+    sourceSignalId: signal.id,
+  };
+
+  const newIncident: Incident = {
+    id: newIncidentId,
+    title: `${analysis.incidentType.toUpperCase()} - ${analysis.location.landmarks[0] || analysis.location.area || 'Metro Sector'}`,
+    incidentType: analysis.incidentType,
+    classification: analysis.classification,
+    location: analysis.location,
+    people: analysis.people,
+    peopleHistory:
+      analysis.people.affected !== null
+        ? [
+            {
+              count: analysis.people.affected,
+              timestamp: signal.timestamp,
+              label: 'Initial report',
+            },
+          ]
+        : [],
+    urgency: analysis.urgency,
+    severity: analysis.severity,
+    status: analysis.status,
+    resources: analysis.resources,
+    confidence: analysis.confidence,
+    uncertainties: analysis.uncertainties,
+    evidence: analysis.evidence,
+    signals: [signal],
+    whatChanged: [initialChange],
+    createdAt: signal.timestamp,
+    updatedAt: signal.timestamp,
+    conflictCount: 0,
+    aiExplanations: analysis.explanations,
+  };
+
+  globalStore.incidents = [newIncident, ...globalStore.incidents];
+
+  return {
+    incident: newIncident,
+    analysis,
+    isNewIncident: true,
+    isNoise: false,
+  };
+}
+
+/**
+ * Loads the full 52-report benchmark dataset sequentially
+ */
+export async function seedFullBenchmarkDataset(): Promise<void> {
+  resetStore();
+  for (const report of FULL_DEMO_REPORTS) {
+    const signal: EmergencySignal = {
+      id: report.id,
+      source: report.source,
+      sender: report.sender,
+      rawText: report.rawText,
+      language: report.language,
+      timestamp: report.timestamp,
+      isDemoConnector: true,
+    };
+    await ingestSignal(signal);
+  }
+}

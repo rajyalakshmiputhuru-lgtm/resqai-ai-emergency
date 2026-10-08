@@ -1,0 +1,506 @@
+import { EmergencySignal, Incident } from '@/types';
+
+/**
+ * 6-STEP VELACHERY LIVE DEMO SEQUENCE
+ * This simulates the core judge demonstration:
+ * 6 scattered signals from different channels & languages
+ * evolving into 1 single incident (#INC-001)
+ */
+export const LIVE_DEMO_SEQUENCE: Array<{
+  step: number;
+  time: string;
+  source: EmergencySignal['source'];
+  sender: string;
+  language: string;
+  message: string;
+  expectedUpdate: string;
+}> = [
+  {
+    step: 1,
+    time: '08:10 AM',
+    source: 'audio_call',
+    sender: 'Emergency 112 Dispatch Call #409',
+    language: 'English',
+    message: 'Water entered ground floor houses near the Velachery MRTS west gate. 6 people trapped inside.',
+    expectedUpdate: 'CREATE INCIDENT #INC-001 (Flood, 6 trapped, High Urgency)',
+  },
+  {
+    step: 2,
+    time: '08:16 AM',
+    source: 'whatsapp',
+    sender: 'WhatsApp Group (Velachery Residents)',
+    language: 'Telugu-English',
+    message: 'Station venakala Vijayanagar side lo water vachindi, same place an elderly person inside lo unnaru.',
+    expectedUpdate: 'MATCH INC-001: Added vulnerable person (Elderly citizen)',
+  },
+  {
+    step: 3,
+    time: '08:25 AM',
+    source: 'sms',
+    sender: 'SMS Alert +91-98401XXXXX',
+    language: 'English',
+    message: 'Update from MRTS west gate: count is 10 people now trapped on the roof terrace as water reaches 4 feet.',
+    expectedUpdate: 'MATCH INC-001: Conflict detected & updated (6 → 10 people trapped)',
+  },
+  {
+    step: 4,
+    time: '08:40 AM',
+    source: 'social_media',
+    sender: 'Twitter/X @chennai_weather_live',
+    language: 'Telugu-English',
+    message: 'Velachery MRTS daggara water chala perigindi rapidly rising, immediate rescue boat needed!',
+    expectedUpdate: 'MATCH INC-001: Urgency escalated to CRITICAL. Recommended Rescue Boat.',
+  },
+  {
+    step: 5,
+    time: '09:05 AM',
+    source: 'field_responder',
+    sender: 'NDRF Unit 4 Radio',
+    language: 'English',
+    message: 'NDRF Rescue boat team reached the building behind MRTS west gate. Extraction underway.',
+    expectedUpdate: 'MATCH INC-001: Status changed to RESCUE IN PROGRESS',
+  },
+  {
+    step: 6,
+    time: '09:30 AM',
+    source: 'field_responder',
+    sender: 'Chennai Fire & Rescue Commander',
+    language: 'English',
+    message: 'All 10 residents including the elderly person evacuated safely. Everyone rescued.',
+    expectedUpdate: 'MATCH INC-001: Status changed to RESOLVED. All lives secured.',
+  },
+];
+
+/**
+ * COMPREHENSIVE 52-REPORT LARGE BENCHMARK DATASET
+ * 5 Real Incidents + Grouped Duplicates + Multilingual + 8 Noise Reports
+ */
+export const FULL_DEMO_REPORTS: Array<{
+  id: string;
+  source: EmergencySignal['source'];
+  sender: string;
+  rawText: string;
+  language: string;
+  timestamp: string;
+  isNoise?: boolean;
+}> = [
+  // --- INCIDENT 1: Velachery MRTS Flood (10 Reports) ---
+  {
+    id: 'SIG-101',
+    source: 'audio_call',
+    sender: '112 Call #101',
+    rawText: 'Water entered houses near Velachery MRTS west gate, 6 people trapped inside.',
+    language: 'English',
+    timestamp: '08:10 AM',
+  },
+  {
+    id: 'SIG-102',
+    source: 'whatsapp',
+    sender: 'WhatsApp +91-9840123451',
+    rawText: 'Station venakala Vijayanagar side lo water vachindi, same place an elderly person inside lo unnaru.',
+    language: 'Telugu-English',
+    timestamp: '08:16 AM',
+  },
+  {
+    id: 'SIG-103',
+    source: 'sms',
+    sender: 'SMS +91-9444012345',
+    rawText: 'Update from MRTS west gate: count is 10 people now trapped on the roof terrace as water reaches 4 feet.',
+    language: 'English',
+    timestamp: '08:25 AM',
+  },
+  {
+    id: 'SIG-104',
+    source: 'social_media',
+    sender: 'Twitter @chennai_flood_alert',
+    rawText: 'Velachery MRTS daggara water chala perigindi rapidly rising, immediate rescue boat needed!',
+    language: 'Telugu-English',
+    timestamp: '08:40 AM',
+  },
+  {
+    id: 'SIG-105',
+    source: 'field_responder',
+    sender: 'NDRF Unit 4 Radio',
+    rawText: 'NDRF Rescue boat team reached the building behind MRTS west gate. Extraction underway.',
+    language: 'English',
+    timestamp: '09:05 AM',
+  },
+  {
+    id: 'SIG-106',
+    source: 'field_responder',
+    sender: 'Fire & Rescue Station Officer',
+    rawText: 'All 10 residents including the elderly person evacuated safely. Everyone rescued.',
+    language: 'English',
+    timestamp: '09:30 AM',
+  },
+  {
+    id: 'SIG-107',
+    source: 'whatsapp',
+    sender: 'Resident Group Velachery',
+    rawText: 'Opposite the medical shop near the station backside road water is neck deep, family shouting for help.',
+    language: 'English',
+    timestamp: '08:22 AM',
+  },
+  {
+    id: 'SIG-108',
+    source: 'audio_call',
+    sender: '112 Call #118',
+    rawText: 'Velachery MRTS station daggara water level chala ekkuva undi, boats kavali urgent ga.',
+    language: 'Telugu-English',
+    timestamp: '08:31 AM',
+  },
+  {
+    id: 'SIG-109',
+    source: 'social_media',
+    sender: 'Instagram @chennai_updates',
+    rawText: 'Drone visual showing Velachery MRTS west gate submerged. Relief team arriving.',
+    language: 'English',
+    timestamp: '08:52 AM',
+  },
+  {
+    id: 'SIG-110',
+    source: 'sms',
+    sender: 'SMS +91-9884112233',
+    rawText: 'Power cut near Velachery MRTS behind station. Elderly patient needs oxygen support.',
+    language: 'English',
+    timestamp: '08:35 AM',
+  },
+
+  // --- INCIDENT 2: Ambattur Industrial Fire (8 Reports) ---
+  {
+    id: 'SIG-201',
+    source: 'audio_call',
+    sender: '101 Fire Call #201',
+    rawText: 'Massive chemical warehouse fire at Ambattur Industrial Estate Phase 2. Thick black smoke rising.',
+    language: 'English',
+    timestamp: '07:45 AM',
+  },
+  {
+    id: 'SIG-202',
+    source: 'whatsapp',
+    sender: 'Ambattur Factory Workers WA',
+    rawText: 'Ambattur estate lo pedda manta vacchindi, 4 workers inside trapped unnaru! Fire engine urgent!',
+    language: 'Telugu-English',
+    timestamp: '07:50 AM',
+  },
+  {
+    id: 'SIG-203',
+    source: 'social_media',
+    sender: 'Twitter @chennai_traffic_watch',
+    rawText: 'Explosions heard at SIDCO Ambattur paint factory. Smoke visible from 5 km away.',
+    language: 'English',
+    timestamp: '07:55 AM',
+  },
+  {
+    id: 'SIG-204',
+    source: 'sms',
+    sender: 'Factory Supervisor +91-9841029384',
+    rawText: 'Flammable solvents burning in Unit 14 Ambattur. Need 4 fire tenders and foam units immediately.',
+    language: 'English',
+    timestamp: '08:02 AM',
+  },
+  {
+    id: 'SIG-205',
+    source: 'field_responder',
+    sender: 'Ambattur Fire Tender 1',
+    rawText: 'Firefighters deployed on site at Ambattur SIDCO. 4 workers extracted with minor burn injuries.',
+    language: 'English',
+    timestamp: '08:20 AM',
+  },
+  {
+    id: 'SIG-206',
+    source: 'whatsapp',
+    sender: 'Local Shopkeeper +91-9791028374',
+    rawText: 'Ambattur industrial estate road completely blocked with fire engines and police barricades.',
+    language: 'English',
+    timestamp: '08:28 AM',
+  },
+  {
+    id: 'SIG-207',
+    source: 'audio_call',
+    sender: '108 Ambulance Dispatch',
+    rawText: 'Two ambulances standing by at Ambattur industrial gate. Injured receiving burn triage.',
+    language: 'English',
+    timestamp: '08:32 AM',
+  },
+  {
+    id: 'SIG-208',
+    source: 'field_responder',
+    sender: 'District Fire Officer',
+    rawText: 'Chemical fire at Ambattur controlled and cooling operations underway. Zero casualties.',
+    language: 'English',
+    timestamp: '09:15 AM',
+  },
+
+  // --- INCIDENT 3: T. Nagar Medical Stampede & Heat Collapse (8 Reports) ---
+  {
+    id: 'SIG-301',
+    source: 'audio_call',
+    sender: '108 Medical Helpline #301',
+    rawText: 'Heavy crowd surge at T. Nagar Ranganathan Street festival sale, 5 people collapsed unconscious due to suffocation.',
+    language: 'English',
+    timestamp: '08:30 AM',
+  },
+  {
+    id: 'SIG-302',
+    source: 'whatsapp',
+    sender: 'T Nagar Traders Guild',
+    rawText: 'Ranganathan street lo stampede type situation. Oka pregnant lady and child collapsed. Send ambulance fast!',
+    language: 'Telugu-English',
+    timestamp: '08:34 AM',
+  },
+  {
+    id: 'SIG-303',
+    source: 'sms',
+    sender: 'Shopper +91-9940128475',
+    rawText: 'Total chaos near Usman Road flyover entry. People fainting. Need oxygen cylinders and medical team.',
+    language: 'English',
+    timestamp: '08:38 AM',
+  },
+  {
+    id: 'SIG-304',
+    source: 'field_responder',
+    sender: 'Traffic Police Sub-Inspector #22',
+    rawText: 'Police barricades breached near T Nagar bus terminus. Diverting crowd into Panagal park.',
+    language: 'English',
+    timestamp: '08:42 AM',
+  },
+  {
+    id: 'SIG-305',
+    source: 'social_media',
+    sender: 'Twitter @chennai_citizen',
+    rawText: 'Do not go towards T Nagar Ranganathan street! Major medical emergency, multiple people fainted.',
+    language: 'English',
+    timestamp: '08:45 AM',
+  },
+  {
+    id: 'SIG-306',
+    source: 'audio_call',
+    sender: '108 Medical Call #319',
+    rawText: 'Ambulance stuck 200m away on South Usman road due to crowd. Need police escort to reach casualties.',
+    language: 'English',
+    timestamp: '08:48 AM',
+  },
+  {
+    id: 'SIG-307',
+    source: 'field_responder',
+    sender: '108 Paramedic Team Lead',
+    rawText: 'First aid rendered on spot to 7 individuals. Pregnant mother stabilized and transferred to hospital.',
+    language: 'English',
+    timestamp: '09:10 AM',
+  },
+  {
+    id: 'SIG-308',
+    source: 'whatsapp',
+    sender: 'T Nagar Shopper +91-9840918273',
+    rawText: 'Situation under control now in Ranganathan street. Police cleared the main street passage.',
+    language: 'English',
+    timestamp: '09:25 AM',
+  },
+
+  // --- INCIDENT 4: OMR Sholinganallur Multi-Vehicle Collision (8 Reports) ---
+  {
+    id: 'SIG-401',
+    source: 'audio_call',
+    sender: '100 Police Call #401',
+    rawText: 'Multi-vehicle collision on OMR expressway near Sholinganallur junction toll. Lorry overturned on 2 cars.',
+    language: 'English',
+    timestamp: '08:05 AM',
+  },
+  {
+    id: 'SIG-402',
+    source: 'social_media',
+    sender: 'Twitter @omr_commuters',
+    rawText: 'Horrific crash at Sholinganallur signal! Car crushed under gravel lorry. Passengers trapped inside!',
+    language: 'English',
+    timestamp: '08:08 AM',
+  },
+  {
+    id: 'SIG-403',
+    source: 'whatsapp',
+    sender: 'IT Tech Park WA +91-9884019283',
+    rawText: 'OMR toll daggara pedda accident aindi. Blood bleeding chala undi, hydraulic cutters needed to open doors.',
+    language: 'Telugu-English',
+    timestamp: '08:12 AM',
+  },
+  {
+    id: 'SIG-404',
+    source: 'sms',
+    sender: 'Eyewitness +91-9790182736',
+    rawText: 'Three people trapped inside white sedan near ELCOT SEZ gate. Urgently dispatch crane and ambulance.',
+    language: 'English',
+    timestamp: '08:15 AM',
+  },
+  {
+    id: 'SIG-405',
+    source: 'field_responder',
+    sender: 'Highway Patrol Team #09',
+    rawText: 'Highway patrol on scene at Sholinganallur. Traffic halted on northbound carriageway. Extrication in progress.',
+    language: 'English',
+    timestamp: '08:24 AM',
+  },
+  {
+    id: 'SIG-406',
+    source: 'audio_call',
+    sender: '108 Dispatcher Call #420',
+    rawText: '2 casualties extracted with fractures, en route to Chettinad Health City. 1 driver still pinned.',
+    language: 'English',
+    timestamp: '08:36 AM',
+  },
+  {
+    id: 'SIG-407',
+    source: 'social_media',
+    sender: 'Twitter @chennai_traffic',
+    rawText: 'Heavy 4km backlog on OMR toll plaza due to crane operations removing overturned container.',
+    language: 'English',
+    timestamp: '08:49 AM',
+  },
+  {
+    id: 'SIG-408',
+    source: 'field_responder',
+    sender: 'Highway Patrol Inspector',
+    rawText: 'Third victim extracted safely. Wreckage cleared to emergency lane. Traffic moving slowly.',
+    language: 'English',
+    timestamp: '09:20 AM',
+  },
+
+  // --- INCIDENT 5: Guindy Kathipara Structural Hazard & Evacuation (8 Reports) ---
+  {
+    id: 'SIG-501',
+    source: 'audio_call',
+    sender: '112 Call #501',
+    rawText: 'Deep structural cracks appeared on 4-storey commercial building near Kathipara junction Guindy. Plaster falling.',
+    language: 'English',
+    timestamp: '07:30 AM',
+  },
+  {
+    id: 'SIG-502',
+    source: 'whatsapp',
+    sender: 'Guindy Shop Owners',
+    rawText: 'Building pillar crack aindi Kathipara bridge pakkana! 15 people still inside second floor, need evacuation!',
+    language: 'Telugu-English',
+    timestamp: '07:36 AM',
+  },
+  {
+    id: 'SIG-503',
+    source: 'sms',
+    sender: 'Resident +91-9840192847',
+    rawText: 'Vibrations from metro construction caused wall collapse in old complex near Guindy station. People panicked.',
+    language: 'English',
+    timestamp: '07:42 AM',
+  },
+  {
+    id: 'SIG-504',
+    source: 'field_responder',
+    sender: 'Disaster Response Force Alpha',
+    rawText: 'SDRF squad deployed at Guindy commercial block. Initiating phased perimeter cordoning and stairway evacuation.',
+    language: 'English',
+    timestamp: '08:00 AM',
+  },
+  {
+    id: 'SIG-505',
+    source: 'social_media',
+    sender: 'Twitter @guindy_buzz',
+    rawText: 'Police sealing off service lane near Kathipara cloverleaf. Building tilt reported by engineers.',
+    language: 'English',
+    timestamp: '08:14 AM',
+  },
+  {
+    id: 'SIG-506',
+    source: 'audio_call',
+    sender: '112 Call #530',
+    rawText: 'Two bedridden senior citizens on 3rd floor cannot climb stairs. Need stretcher team immediately.',
+    language: 'English',
+    timestamp: '08:22 AM',
+  },
+  {
+    id: 'SIG-507',
+    source: 'field_responder',
+    sender: 'SDRF Team Leader',
+    rawText: 'Senior citizens evacuated using aerial ladder platform. 12 residents led out safely.',
+    language: 'English',
+    timestamp: '08:50 AM',
+  },
+  {
+    id: 'SIG-508',
+    source: 'field_responder',
+    sender: 'Greater Chennai Corporation Engineer',
+    rawText: 'Building completely evacuated and red-tagged. No occupants remaining inside. Area secured.',
+    language: 'English',
+    timestamp: '09:12 AM',
+  },
+
+  // --- 8 NOISE / NON-EMERGENCY REPORTS (FILTERED BY ONE GEMINI AI) ---
+  {
+    id: 'SIG-901',
+    source: 'social_media',
+    sender: 'Twitter @foodie_chennai',
+    rawText: 'Traffic is heavy near Velachery bypass road today. Anyone know why Swiggy delivery is delayed?',
+    language: 'English',
+    timestamp: '08:14 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-902',
+    source: 'whatsapp',
+    sender: 'WhatsApp Group Friends',
+    rawText: 'Good morning guys, heavy rain in Chennai today weather is so pleasant! Having hot filter coffee.',
+    language: 'English',
+    timestamp: '08:18 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-903',
+    source: 'social_media',
+    sender: 'Twitter @commuter_life',
+    rawText: 'Kathipara flyover regular peak hour slow movement as usual. Signal timing needs improvement.',
+    language: 'English',
+    timestamp: '08:26 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-904',
+    source: 'sms',
+    sender: 'Spam SMS +91-7788990011',
+    rawText: 'Flash sale at Phoenix Marketcity Velachery! Up to 50% discount on clothing brands this weekend.',
+    language: 'English',
+    timestamp: '08:33 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-905',
+    source: 'social_media',
+    sender: 'Twitter @chennai_food_lover',
+    rawText: 'Best biryani near T Nagar Ranganathan street? Craving spicy food in this rainy weather.',
+    language: 'English',
+    timestamp: '08:41 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-906',
+    source: 'whatsapp',
+    sender: 'Office Cab Driver WA',
+    rawText: 'OMR toll plaza FASTag scanner was taking 2 minutes extra per vehicle in morning.',
+    language: 'English',
+    timestamp: '08:46 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-907',
+    source: 'audio_call',
+    sender: 'Non-Emergency Enquiry Call #88',
+    rawText: 'Enquiry: Is the local train from Velachery to Chennai Beach running on time today?',
+    language: 'English',
+    timestamp: '08:55 AM',
+    isNoise: true,
+  },
+  {
+    id: 'SIG-908',
+    source: 'social_media',
+    sender: 'Twitter @anonymous_rumor',
+    rawText: 'Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.',
+    language: 'English',
+    timestamp: '08:58 AM',
+    isNoise: true,
+  },
+];
