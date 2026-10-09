@@ -10,7 +10,11 @@ import BottomPanel from '@/components/dashboard/BottomPanel';
 import IncidentDetailModal from '@/components/dashboard/IncidentDetailModal';
 import LiveDemoModal from '@/components/demo/LiveDemoModal';
 import LiveIngestionConsole from '@/components/ingestion/LiveIngestionConsole';
+import IncidentReportView from '@/components/report/IncidentReportView';
+import ResponderView from '@/components/responder/ResponderView';
+import EmergencyResourceDirectory from '@/components/resources/EmergencyResourceDirectory';
 import AnalyticsView from '@/components/analytics/AnalyticsView';
+import AboutArchitectureView from '@/components/about/AboutArchitectureView';
 import JudgeModeView from '@/components/judge/JudgeModeView';
 import { Incident, EmergencySignal } from '@/types';
 import { Loader2 } from 'lucide-react';
@@ -112,6 +116,11 @@ export default function Home() {
     setDetailModalIncident(inc);
   }
 
+  function handleSelectIncidentOnMap(inc: Incident) {
+    setSelectedIncident(inc);
+    setActiveTab('dashboard');
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100">
       {/* Top Navigation */}
@@ -133,7 +142,7 @@ export default function Home() {
             <HeroBanner
               onStartLiveDemo={() => setIsDemoModalOpen(true)}
               onOpenDashboard={() => setActiveTab('dashboard')}
-              onTryAiAnalysis={() => setActiveTab('ingestion')}
+              onTryAiAnalysis={() => setActiveTab('report')}
             />
 
             {/* KPI Triage Cards */}
@@ -169,12 +178,32 @@ export default function Home() {
           </div>
         )}
 
-        {/* TAB 2: LIVE INGESTION CONSOLE */}
+        {/* TAB 2: CITIZEN REPORT / AI TRIAGE */}
+        {activeTab === 'report' && (
+          <IncidentReportView
+            onReportSubmitted={fetchIncidents}
+            onNavigateToDashboard={() => setActiveTab('dashboard')}
+          />
+        )}
+
+        {/* TAB 3: TACTICAL RESPONDER COMMAND */}
+        {activeTab === 'responder' && (
+          <ResponderView
+            incidents={incidents}
+            onStatusUpdated={fetchIncidents}
+            onSelectIncidentOnMap={handleSelectIncidentOnMap}
+          />
+        )}
+
+        {/* TAB 4: EMERGENCY RESOURCE DIRECTORY */}
+        {activeTab === 'resources' && <EmergencyResourceDirectory />}
+
+        {/* TAB 5: LIVE INGESTION CONSOLE */}
         {activeTab === 'ingestion' && (
           <LiveIngestionConsole onSignalIngested={fetchIncidents} />
         )}
 
-        {/* TAB 3: ANALYTICS & METRICS */}
+        {/* TAB 6: ANALYTICS & METRICS */}
         {activeTab === 'analytics' && (
           <AnalyticsView
             incidents={incidents}
@@ -183,7 +212,10 @@ export default function Home() {
           />
         )}
 
-        {/* TAB 4: JUDGE MODE WALKTHROUGH */}
+        {/* TAB 7: ABOUT & ARCHITECTURE */}
+        {activeTab === 'about' && <AboutArchitectureView />}
+
+        {/* TAB 8: JUDGE MODE WALKTHROUGH */}
         {activeTab === 'judge' && (
           <JudgeModeView
             onStartLiveDemo={() => setIsDemoModalOpen(true)}
@@ -194,16 +226,19 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-slate-800/80 py-6 bg-slate-950 mt-12 text-center text-xs text-slate-500 font-mono space-y-1">
-        <p>ResQAI – AI Emergency Response Assistant • &ldquo;From scattered signals to one clear emergency.&rdquo;</p>
+        <p>
+          ResQAI – AI Emergency Response Assistant • &ldquo;From scattered signals to one clear emergency.&rdquo;
+        </p>
         <p className="text-[11px] text-slate-600">
           Strict Single-AI Architecture Powered by Google Gemini API • Advisory Dispatch Only (Human in the loop)
         </p>
       </footer>
 
-      {/* Full 14-Section Incident Detail Modal */}
+      {/* Full Incident Detail Modal */}
       <IncidentDetailModal
         incident={detailModalIncident}
         onClose={() => setDetailModalIncident(null)}
+        onStatusUpdated={fetchIncidents}
       />
 
       {/* Live Demo Simulation Modal */}

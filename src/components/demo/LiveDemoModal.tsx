@@ -35,6 +35,40 @@ export default function LiveDemoModal({
   const [autoPlay, setAutoPlay] = useState(false);
   const [logs, setLogs] = useState<Array<{ step: number; text: string; update: string }>>([]);
 
+  const executeStep = React.useCallback(
+    async (stepIndex: number) => {
+      if (isProcessing) return;
+      setIsProcessing(true);
+
+      try {
+        const res = await fetch('/api/demo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'step', stepIndex }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setCurrentStep(stepIndex);
+          const seqItem = LIVE_DEMO_SEQUENCE[stepIndex - 1];
+          setLogs((prev) => [
+            ...prev,
+            {
+              step: stepIndex,
+              text: `[${seqItem.time} - ${seqItem.source.toUpperCase()}] ${seqItem.message}`,
+              update: seqItem.expectedUpdate,
+            },
+          ]);
+          onStepProcessed();
+        }
+      } catch (err) {
+        console.error('Demo step failed:', err);
+      } finally {
+        setIsProcessing(false);
+      }
+    },
+    [isProcessing, onStepProcessed]
+  );
+
   // Auto-play timer
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -46,40 +80,9 @@ export default function LiveDemoModal({
       setAutoPlay(false);
     }
     return () => clearTimeout(timer);
-  }, [autoPlay, currentStep, isProcessing]);
+  }, [autoPlay, currentStep, isProcessing, executeStep]);
 
   if (!isOpen) return null;
-
-  async function executeStep(stepIndex: number) {
-    if (isProcessing) return;
-    setIsProcessing(true);
-
-    try {
-      const res = await fetch('/api/demo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'step', stepIndex }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setCurrentStep(stepIndex);
-        const seqItem = LIVE_DEMO_SEQUENCE[stepIndex - 1];
-        setLogs((prev) => [
-          ...prev,
-          {
-            step: stepIndex,
-            text: `[${seqItem.time} - ${seqItem.source.toUpperCase()}] ${seqItem.message}`,
-            update: seqItem.expectedUpdate,
-          },
-        ]);
-        onStepProcessed();
-      }
-    } catch (err) {
-      console.error('Demo step failed:', err);
-    } finally {
-      setIsProcessing(false);
-    }
-  }
 
   async function handleReset() {
     setIsProcessing(true);

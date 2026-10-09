@@ -1,8 +1,11 @@
+import fs from 'fs';
+import path from 'path';
 import {
   EmergencySignal,
   Incident,
   AnalysisResult,
   WhatChangedEntry,
+  IncidentStatus,
 } from '@/types';
 import { analyzeEmergencySignal } from '@/lib/ai/gemini';
 import { FULL_DEMO_REPORTS } from '@/lib/data/dataset';
@@ -26,7 +29,55 @@ let globalStore: StoreState = {
   activeDemoStep: 0,
 };
 
+let isInitialized = false;
+
+const DATA_DIR = path.join(process.cwd(), 'data');
+const DATA_FILE = path.join(DATA_DIR, 'resqai-store.json');
+
+function loadStoreFromFile(): boolean {
+  try {
+    if (fs.existsSync(DATA_FILE)) {
+      const content = fs.readFileSync(DATA_FILE, 'utf-8');
+      const parsed = JSON.parse(content);
+      if (parsed && Array.isArray(parsed.incidents)) {
+        globalStore = {
+          incidents: parsed.incidents || [],
+          rawReports: parsed.rawReports || [],
+          noiseReports: parsed.noiseReports || [],
+          unverifiedReports: parsed.unverifiedReports || [],
+          lastAnalysis: parsed.lastAnalysis || null,
+          activeDemoStep: parsed.activeDemoStep || 0,
+        };
+        return true;
+      }
+    }
+  } catch (err) {
+    console.warn('Notice: Could not load store from file:', err);
+  }
+  return false;
+}
+
+export function persistStoreToFile(): void {
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    fs.writeFileSync(DATA_FILE, JSON.stringify(globalStore, null, 2), 'utf-8');
+  } catch (err) {
+    console.warn('Notice: Could not persist store to file:', err);
+  }
+}
+
 export function getStore(): StoreState {
+  if (!isInitialized) {
+    isInitialized = true;
+    const loaded = loadStoreFromFile();
+    if (!loaded && globalStore.incidents.length === 0) {
+      seedFullBenchmarkDataset().catch((err) =>
+        console.warn('Initial benchmark seed notice:', err)
+      );
+    }
+  }
   return globalStore;
 }
 
@@ -39,6 +90,7 @@ export function resetStore(): void {
     lastAnalysis: null,
     activeDemoStep: 0,
   };
+  persistStoreToFile();
 }
 
 /**
@@ -50,6 +102,9 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
   isNewIncident: boolean;
   isNoise: boolean;
 }> {
+  // Ensure store initialized
+  getStore();
+
   // Store raw signal
   globalStore.rawReports.unshift(signal);
 
@@ -60,6 +115,7 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
   // 2. Filter Noise
   if (analysis.classification === 'non-emergency') {
     globalStore.noiseReports.unshift(signal);
+    persistStoreToFile();
     return {
       incident: null,
       analysis,
@@ -84,6 +140,7 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
       existing.signals = [signal, ...existing.signals];
       existing.updatedAt = signal.timestamp;
       existing.aiExplanations = analysis.explanations;
+      existing.summary = analysis.summary;
 
       // Handle conflict in people count
       if (
@@ -207,6 +264,7 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
       }
 
       globalStore.incidents[existingIndex] = existing;
+      persistStoreToFile();
       return {
         incident: existing,
         analysis,
@@ -259,9 +317,13 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
     updatedAt: signal.timestamp,
     conflictCount: 0,
     aiExplanations: analysis.explanations,
+    isDemoRecord: Boolean(signal.isDemoConnector),
+    summary: analysis.summary,
+    notes: [],
   };
 
   globalStore.incidents = [newIncident, ...globalStore.incidents];
+  persistStoreToFile();
 
   return {
     incident: newIncident,
@@ -269,6 +331,134 @@ export async function ingestSignal(signal: EmergencySignal): Promise<{
     isNewIncident: true,
     isNoise: false,
   };
+}
+
+/**
+ * Updates operational status of an incident (responder command)
+ */
+export function updateIncidentStatus(
+  incidentId: string,
+  newStatus: IncidentStatus,
+  responderNotes?: string
+): Incident | null {
+  const store = getStore();
+  const index = store.incidents.findIndex((i) => i.id === incidentId);
+  if (index === -1) return null;
+
+  const existing = { ...store.incidents[index] };
+  const prevStatus = existing.status;
+  existing.status = newStatus;
+  existing.updatedAt = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  const changeEntry: WhatChangedEntry = {
+    id: `wc-${Date.now()}`,
+    timestamp: existing.updatedAt,
+    type: 'status',
+    label: 'Responder Operational Status Update',
+    from: prevStatus.replace(/_/g, ' ').toUpperCase(),
+    to: newStatus.replace(/_/g, ' ').toUpperCase(),
+    detail: responderNotes || `Operational status transitioned to ${newStatus.replace(/_/g, ' ').toUpperCase()}`,
+  };
+
+  existing.whatChanged = [changeEntry, ...existing.whatChanged];
+
+  if (responderNotes) {
+    existing.notes = [
+      {
+        id: `note-${Date.now()}`,
+        timestamp: existing.updatedAt,
+        author: 'Field Responder / Dispatcher',
+        text: responderNotes,
+      },
+      ...(existing.notes || []),
+    ];
+  }
+
+  store.incidents[index] = existing;
+  persistStoreToFile();
+  return existing;
+}
+
+/**
+ * Adds an operational responder note
+ */
+export function addResponderNote(
+  incidentId: string,
+  author: string,
+  text: string
+): Incident | null {
+  const store = getStore();
+  const index = store.incidents.findIndex((i) => i.id === incidentId);
+  if (index === -1) return null;
+
+  const existing = { ...store.incidents[index] };
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const note = {
+    id: `note-${Date.now()}`,
+    timestamp,
+    author: author || 'Field Responder',
+    text,
+  };
+
+  existing.notes = [note, ...(existing.notes || [])];
+  existing.updatedAt = timestamp;
+  store.incidents[index] = existing;
+  persistStoreToFile();
+  return existing;
+}
+
+/**
+ * Generates an RFC 4180 compliant CSV of all stored incidents
+ */
+export function generateIncidentsCsv(): string {
+  const store = getStore();
+  const headers = [
+    'Incident ID',
+    'Title',
+    'Type',
+    'Classification',
+    'Urgency',
+    'Status',
+    'People Affected',
+    'Trapped',
+    'Vulnerable Individuals',
+    'Normalized Location',
+    'Landmarks',
+    'Clustered Signals Count',
+    'Record Type',
+    'Created At',
+    'Updated At',
+    'AI Responder Summary',
+  ];
+
+  function escapeCsv(val: any): string {
+    if (val === null || val === undefined) return '""';
+    const str = String(val).replace(/"/g, '""');
+    return `"${str}"`;
+  }
+
+  const rows = store.incidents.map((inc) => [
+    escapeCsv(inc.id),
+    escapeCsv(inc.title),
+    escapeCsv(inc.incidentType),
+    escapeCsv(inc.classification),
+    escapeCsv(inc.urgency),
+    escapeCsv(inc.status),
+    escapeCsv(inc.people.affected ?? 'Unknown'),
+    escapeCsv(inc.people.trapped ?? 'Unknown'),
+    escapeCsv(
+      inc.people.vulnerable.map((v) => `${v.type}: ${v.details}`).join('; ') || 'None'
+    ),
+    escapeCsv(inc.location.normalized),
+    escapeCsv(inc.location.landmarks.join(', ')),
+    escapeCsv(inc.signals.length),
+    escapeCsv(inc.isDemoRecord ? 'DEMO SIMULATION' : 'REAL INCIDENT'),
+    escapeCsv(inc.createdAt),
+    escapeCsv(inc.updatedAt),
+    escapeCsv(inc.summary?.responderBrief || inc.aiExplanations?.whyCritical || ''),
+  ]);
+
+  return [headers.join(','), ...rows.map((r) => r.join(','))].join('\r\n');
 }
 
 /**

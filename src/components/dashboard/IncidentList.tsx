@@ -24,6 +24,9 @@ import {
   Radio,
   Layers,
   MapPin,
+  Download,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 interface IncidentListProps {
@@ -41,6 +44,7 @@ export default function IncidentList({
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'urgency' | 'updated' | 'people'>('urgency');
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const filteredIncidents = useMemo(() => {
     return incidents
@@ -191,18 +195,29 @@ export default function IncidentList({
             </span>
           </div>
 
-          {/* Sort Selector */}
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <SlidersHorizontal className="w-3.5 h-3.5" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs focus:outline-none focus:border-cyan-500"
+          {/* Controls: Export CSV & Sort */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.open('/api/export', '_blank')}
+              className="flex items-center gap-1 px-2 py-1 rounded bg-slate-900 hover:bg-slate-800 text-[11px] text-slate-300 hover:text-white border border-slate-700 transition"
+              title="Export all incidents to CSV"
             >
-              <option value="urgency">Highest Urgency</option>
-              <option value="people">Most People</option>
-              <option value="updated">Latest Update</option>
-            </select>
+              <Download className="w-3 h-3 text-cyan-400" />
+              <span>CSV</span>
+            </button>
+
+            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+              <SlidersHorizontal className="w-3.5 h-3.5" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs focus:outline-none focus:border-cyan-500"
+              >
+                <option value="urgency">Highest Urgency</option>
+                <option value="people">Most People</option>
+                <option value="updated">Latest Update</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -279,10 +294,39 @@ export default function IncidentList({
                       {getTypeIcon(incident.incidentType)}
                       {incident.incidentType}
                     </span>
+                    <span
+                      className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-semibold ${
+                        incident.isDemoRecord
+                          ? 'bg-slate-900 text-slate-400 border border-slate-800'
+                          : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                      }`}
+                    >
+                      {incident.isDemoRecord ? 'DEMO' : 'REAL'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     {getUrgencyBadge(incident.urgency)}
                     {getStatusBadge(incident.status)}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const text =
+                          incident.summary?.responderBrief ||
+                          `${incident.id} ${incident.urgency.toUpperCase()} ${incident.incidentType.toUpperCase()} at ${incident.location.normalized}`;
+                        navigator.clipboard.writeText(text);
+                        setCopiedId(incident.id);
+                        setTimeout(() => setCopiedId(null), 2000);
+                      }}
+                      className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition"
+                      title="Copy incident brief"
+                    >
+                      {copiedId === incident.id ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </div>
                 </div>
 

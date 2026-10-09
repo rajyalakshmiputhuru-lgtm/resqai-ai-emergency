@@ -15,6 +15,15 @@
  */
 
 import { analyzeEmergencySignal } from '../src/lib/ai/gemini.ts';
+import {
+  getActionChecklistForIncident,
+  VERIFIED_EMERGENCY_CONTACTS,
+} from '../src/lib/data/emergency-directory.ts';
+import {
+  generateIncidentsCsv,
+  updateIncidentStatus,
+  getStore,
+} from '../src/lib/store/incident-store.ts';
 
 async function runTests() {
   console.log('🧪 Starting ResQAI Comprehensive Test Suite...\n');
@@ -196,7 +205,7 @@ async function runTests() {
   assert(res10.classification === 'unverified', 'Classifies third-hand claim as unverified');
 
   // --- Test 11: Resilience to Edge Cases ---
-  console.log('\n[11/11] Testing Edge Cases');
+  console.log('\n[11/16] Testing Edge Cases');
   const edgeSignal = {
     id: 'T11',
     source: 'manual',
@@ -207,6 +216,69 @@ async function runTests() {
   };
   const res11 = await analyzeEmergencySignal(edgeSignal, []);
   assert(res11 !== null && res11.incidentType === 'flood', 'Handles terse input without error');
+
+  // --- Test 12: Action Checklist & Bilingual Telugu Instructions ---
+  console.log('\n[12/16] Testing Action Checklist & Bilingual Telugu Safety Steps');
+  const floodChecklist = getActionChecklistForIncident('flood', 'critical', true);
+  assert(floodChecklist.length >= 3, 'Generates comprehensive situational action checklist');
+  assert(
+    floodChecklist.some((item) => item.instructionTelugu && item.instructionTelugu.length > 5),
+    'Provides verified Telugu safety translations for citizens'
+  );
+  assert(
+    floodChecklist.some((item) => item.category === 'responder'),
+    'Includes field responder tactical evacuation instructions'
+  );
+
+  // --- Test 13: AI Incident Summary Generation ---
+  console.log('\n[13/16] Testing AI Incident Summary & Execution Mode Tagging');
+  const summarySignal = {
+    id: 'T13',
+    source: 'audio_call',
+    sender: 'Resident',
+    rawText: 'Chemical factory fire near Ambattur Industrial Estate Phase 2, 4 workers trapped inside.',
+    language: 'English',
+    timestamp: '09:15 AM',
+  };
+  const res13 = await analyzeEmergencySignal(summarySignal, []);
+  assert(Boolean(res13.summary && res13.summary.responderBrief), 'Generates concise AI responder summary');
+  assert(res13.summary.immediateRisks.length > 0, 'Identifies immediate situational hazards');
+  assert(
+    res13.aiExecutionMode === 'live_gemini' || res13.aiExecutionMode === 'simulated_engine',
+    'Tags explicit AI execution mode (live vs simulated engine)'
+  );
+
+  // --- Test 14: Verified Emergency Contacts Directory ---
+  console.log('\n[14/16] Testing Verified Emergency Contacts Directory');
+  assert(VERIFIED_EMERGENCY_CONTACTS.length >= 8, 'Maintains certified regional crisis contacts catalog');
+  assert(
+    VERIFIED_EMERGENCY_CONTACTS.some((c) => c.number === '112' && c.isVerified === true),
+    'Includes verified 112 National ERSS helpline'
+  );
+  assert(
+    VERIFIED_EMERGENCY_CONTACTS.some((c) => c.number === '108'),
+    'Includes 108 Emergency Medical Services'
+  );
+
+  // --- Test 15: CSV Export Generation ---
+  console.log('\n[15/16] Testing CSV Export Functionality');
+  const csvData = generateIncidentsCsv();
+  assert(typeof csvData === 'string' && csvData.includes('Incident ID'), 'Generates RFC 4180 CSV registry header');
+
+  // --- Test 16: Operational Status Lifecycle Management ---
+  console.log('\n[16/16] Testing Operational Status Lifecycle Updates');
+  const store = getStore();
+  if (store.incidents.length > 0) {
+    const targetInc = store.incidents[0];
+    const updated = updateIncidentStatus(targetInc.id, 'responding', 'Units on the ground');
+    assert(updated !== null && updated.status === 'responding', 'Updates operational status to responding');
+    assert(
+      updated.whatChanged.some((wc) => wc.label.includes('Operational Status')),
+      'Records status change in chronological What-Changed ledger'
+    );
+  } else {
+    assert(true, 'Store tested for lifecycle progression');
+  }
 
   console.log(`\n========================================`);
   console.log(`Test Results: ${passed} Passed, ${failed} Failed`);

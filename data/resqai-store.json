@@ -1,0 +1,3399 @@
+{
+  "incidents": [
+    {
+      "id": "INC-013",
+      "title": "OTHER - Local vicinity",
+      "incidentType": "other",
+      "classification": "unverified",
+      "location": {
+        "raw": "Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": 20,
+        "trapped": 20,
+        "vulnerable": []
+      },
+      "peopleHistory": [
+        {
+          "count": 20,
+          "timestamp": "08:58 AM",
+          "label": "Initial report"
+        }
+      ],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "responding",
+      "resources": [],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: CRITICAL"
+      ],
+      "signals": [
+        {
+          "id": "SIG-908",
+          "source": "social_media",
+          "sender": "Twitter @anonymous_rumor",
+          "rawText": "Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.",
+          "language": "English",
+          "timestamp": "08:58 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791526486615",
+          "timestamp": "11:44 am",
+          "type": "status",
+          "label": "Responder Operational Status Update",
+          "from": "RESPONDING",
+          "to": "RESPONDING",
+          "detail": "Units on the ground"
+        },
+        {
+          "id": "wc-1791523962249",
+          "timestamp": "11:02 am",
+          "type": "status",
+          "label": "Responder Operational Status Update",
+          "from": "UNVERIFIED",
+          "to": "RESPONDING",
+          "detail": "Units on the ground"
+        },
+        {
+          "id": "wc-1791523817332",
+          "timestamp": "08:58 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via SOCIAL MEDIA from Twitter @anonymous_rumor",
+          "sourceSignalId": "SIG-908"
+        }
+      ],
+      "createdAt": "08:58 AM",
+      "updatedAt": "11:44 am",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Elevated to CRITICAL due to: 20 persons trapped, escalating hazard kinetics, and rapid water ingress/hazard propagation.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "CRITICAL OTHER at Approximate Urban Sector, Chennai. 20 people affected. Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": [
+        {
+          "id": "note-1791526486615",
+          "timestamp": "11:44 am",
+          "author": "Field Responder / Dispatcher",
+          "text": "Units on the ground"
+        },
+        {
+          "id": "note-1791523962249",
+          "timestamp": "11:02 am",
+          "author": "Field Responder / Dispatcher",
+          "text": "Units on the ground"
+        }
+      ]
+    },
+    {
+      "id": "INC-012",
+      "title": "OTHER - Local vicinity",
+      "incidentType": "other",
+      "classification": "emergency",
+      "location": {
+        "raw": "Good morning guys, heavy rain in Chennai today weather is so pleasant! Having hot filter coffee.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": []
+      },
+      "peopleHistory": [],
+      "urgency": "medium",
+      "severity": "medium",
+      "status": "active",
+      "resources": [],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-902",
+          "source": "whatsapp",
+          "sender": "WhatsApp Group Friends",
+          "rawText": "Good morning guys, heavy rain in Chennai today weather is so pleasant! Having hot filter coffee.",
+          "language": "English",
+          "timestamp": "08:18 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817248",
+          "timestamp": "08:18 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via WHATSAPP from WhatsApp Group Friends",
+          "sourceSignalId": "SIG-902"
+        }
+      ],
+      "createdAt": "08:18 AM",
+      "updatedAt": "08:18 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM OTHER at Approximate Urban Sector, Chennai. People count unconfirmed. Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-011",
+      "title": "EVACUATION - Local vicinity",
+      "incidentType": "evacuation",
+      "classification": "emergency",
+      "location": {
+        "raw": "Building completely evacuated and red-tagged. No occupants remaining inside. Area secured.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": []
+      },
+      "peopleHistory": [],
+      "urgency": "medium",
+      "severity": "medium",
+      "status": "active",
+      "resources": [
+        "rescue personnel",
+        "police",
+        "emergency supplies"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-508",
+          "source": "field_responder",
+          "sender": "Greater Chennai Corporation Engineer",
+          "rawText": "Building completely evacuated and red-tagged. No occupants remaining inside. Area secured.",
+          "language": "English",
+          "timestamp": "09:12 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817214",
+          "timestamp": "09:12 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via FIELD RESPONDER from Greater Chennai Corporation Engineer",
+          "sourceSignalId": "SIG-508"
+        }
+      ],
+      "createdAt": "09:12 AM",
+      "updatedAt": "09:12 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM EVACUATION at Approximate Urban Sector, Chennai. People count unconfirmed. Advisory units: rescue personnel, police, emergency supplies.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-010",
+      "title": "EVACUATION - Local vicinity",
+      "incidentType": "evacuation",
+      "classification": "emergency",
+      "location": {
+        "raw": "Senior citizens evacuated using aerial ladder platform. 12 residents led out safely.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "elderly",
+            "details": "Elderly citizen inside premises requiring mobility assistance"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [
+        "rescue personnel",
+        "police",
+        "emergency supplies"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: CRITICAL",
+        "Identified Vulnerable: ELDERLY"
+      ],
+      "signals": [
+        {
+          "id": "SIG-507",
+          "source": "field_responder",
+          "sender": "SDRF Team Leader",
+          "rawText": "Senior citizens evacuated using aerial ladder platform. 12 residents led out safely.",
+          "language": "English",
+          "timestamp": "08:50 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817200",
+          "timestamp": "08:50 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via FIELD RESPONDER from SDRF Team Leader",
+          "sourceSignalId": "SIG-507"
+        }
+      ],
+      "createdAt": "08:50 AM",
+      "updatedAt": "08:50 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Elevated to CRITICAL due to: threat to human life, elderly vulnerable person(s), and rapid water ingress/hazard propagation.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "CRITICAL EVACUATION at Approximate Urban Sector, Chennai. People count unconfirmed (elderly). Advisory units: rescue personnel, police, emergency supplies.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance.",
+          "Identified vulnerable persons (elderly) requiring priority extraction."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి.",
+          "రక్షణ బృందాలు మొదట రక్షించవలసిన వృద్ధులు లేదా పిల్లలు ఉన్నారు."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-009",
+      "title": "OTHER - Local vicinity",
+      "incidentType": "other",
+      "classification": "emergency",
+      "location": {
+        "raw": "Two bedridden senior citizens on 3rd floor cannot climb stairs. Need stretcher team immediately.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "elderly",
+            "details": "Elderly citizen inside premises requiring mobility assistance"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: Telugu-English",
+        "Signal Urgency: CRITICAL",
+        "Identified Vulnerable: ELDERLY"
+      ],
+      "signals": [
+        {
+          "id": "SIG-506",
+          "source": "audio_call",
+          "sender": "112 Call #530",
+          "rawText": "Two bedridden senior citizens on 3rd floor cannot climb stairs. Need stretcher team immediately.",
+          "language": "English",
+          "timestamp": "08:22 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817187",
+          "timestamp": "08:22 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 112 Call #530",
+          "sourceSignalId": "SIG-506"
+        }
+      ],
+      "createdAt": "08:22 AM",
+      "updatedAt": "08:22 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Elevated to CRITICAL due to: threat to human life, elderly vulnerable person(s), and rapid water ingress/hazard propagation.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "CRITICAL OTHER at Approximate Urban Sector, Chennai. People count unconfirmed (elderly). Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance.",
+          "Identified vulnerable persons (elderly) requiring priority extraction."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి.",
+          "రక్షణ బృందాలు మొదట రక్షించవలసిన వృద్ధులు లేదా పిల్లలు ఉన్నారు."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-008",
+      "title": "EVACUATION - Kathipara Junction & Guindy Industrial Area",
+      "incidentType": "evacuation",
+      "classification": "emergency",
+      "location": {
+        "raw": "Deep structural cracks appeared on 4-storey commercial building near Kathipara junction Guindy. Plaster falling.",
+        "normalized": "Kathipara Junction & Guindy Industrial Area, Guindy, Chennai",
+        "landmarks": [
+          "Kathipara Junction & Guindy Industrial Area",
+          "kathipara",
+          "Kathipara Flyover / Guindy Transit Hub",
+          "guindy station",
+          "kathipara flyover"
+        ],
+        "area": "Guindy",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": 13.0067,
+        "longitude": 80.2036,
+        "confidence": 0.88,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": []
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [
+        "rescue personnel",
+        "police",
+        "emergency supplies"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: Kathipara Junction & Guindy Industrial Area, Guindy, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-903",
+          "source": "social_media",
+          "sender": "Twitter @commuter_life",
+          "rawText": "Kathipara flyover regular peak hour slow movement as usual. Signal timing needs improvement.",
+          "language": "English",
+          "timestamp": "08:26 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-505",
+          "source": "social_media",
+          "sender": "Twitter @guindy_buzz",
+          "rawText": "Police sealing off service lane near Kathipara cloverleaf. Building tilt reported by engineers.",
+          "language": "English",
+          "timestamp": "08:14 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-504",
+          "source": "field_responder",
+          "sender": "Disaster Response Force Alpha",
+          "rawText": "SDRF squad deployed at Guindy commercial block. Initiating phased perimeter cordoning and stairway evacuation.",
+          "language": "English",
+          "timestamp": "08:00 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-503",
+          "source": "sms",
+          "sender": "Resident +91-9840192847",
+          "rawText": "Vibrations from metro construction caused wall collapse in old complex near Guindy station. People panicked.",
+          "language": "English",
+          "timestamp": "07:42 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-502",
+          "source": "whatsapp",
+          "sender": "Guindy Shop Owners",
+          "rawText": "Building pillar crack aindi Kathipara bridge pakkana! 15 people still inside second floor, need evacuation!",
+          "language": "Telugu-English",
+          "timestamp": "07:36 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-501",
+          "source": "audio_call",
+          "sender": "112 Call #501",
+          "rawText": "Deep structural cracks appeared on 4-storey commercial building near Kathipara junction Guindy. Plaster falling.",
+          "language": "English",
+          "timestamp": "07:30 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817135-0.7478323341939139",
+          "timestamp": "07:36 AM",
+          "type": "urgency",
+          "label": "Urgency Escalated",
+          "from": "MEDIUM",
+          "to": "CRITICAL",
+          "sourceSignalId": "SIG-502",
+          "detail": "Elevated to CRITICAL due to: 15 persons trapped, escalating hazard kinetics, and rapid water ingress/hazard propagation."
+        },
+        {
+          "id": "wc-1791523817117",
+          "timestamp": "07:30 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 112 Call #501",
+          "sourceSignalId": "SIG-501"
+        }
+      ],
+      "createdAt": "07:30 AM",
+      "updatedAt": "08:26 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Identified matching landmark cluster (94% confidence) and contiguous flood/disaster sector. Signals share spatial centroid within 300m.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('Kathipara Junction & Guindy Industrial Area, kathipara, kathipara flyover, Kathipara Flyover / Guindy Transit Hub') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM EVACUATION at Kathipara Junction & Guindy Industrial Area, Guindy, Chennai. People count unconfirmed. Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-007",
+      "title": "OTHER - Local vicinity",
+      "incidentType": "other",
+      "classification": "emergency",
+      "location": {
+        "raw": "2 casualties extracted with fractures, en route to Chettinad Health City. 1 driver still pinned.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "injured",
+            "details": "Casualty with active physical trauma"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: CRITICAL",
+        "Identified Vulnerable: INJURED"
+      ],
+      "signals": [
+        {
+          "id": "SIG-406",
+          "source": "audio_call",
+          "sender": "108 Dispatcher Call #420",
+          "rawText": "2 casualties extracted with fractures, en route to Chettinad Health City. 1 driver still pinned.",
+          "language": "English",
+          "timestamp": "08:36 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817087",
+          "timestamp": "08:36 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 108 Dispatcher Call #420",
+          "sourceSignalId": "SIG-406"
+        }
+      ],
+      "createdAt": "08:36 AM",
+      "updatedAt": "08:36 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Elevated to CRITICAL due to: threat to human life, injured vulnerable person(s), and rapid water ingress/hazard propagation.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "CRITICAL OTHER at Approximate Urban Sector, Chennai. People count unconfirmed (injured). Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance.",
+          "Identified vulnerable persons (injured) requiring priority extraction."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి.",
+          "రక్షణ బృందాలు మొదట రక్షించవలసిన వృద్ధులు లేదా పిల్లలు ఉన్నారు."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-006",
+      "title": "ACCIDENT - OMR Sholinganallur Junction",
+      "incidentType": "accident",
+      "classification": "emergency",
+      "location": {
+        "raw": "Multi-vehicle collision on OMR expressway near Sholinganallur junction toll. Lorry overturned on 2 cars.",
+        "normalized": "OMR Sholinganallur Junction, OMR Corridor, Chennai",
+        "landmarks": [
+          "OMR Sholinganallur Junction",
+          "sholinganallur junction",
+          "omr expressway",
+          "OMR Sholinganallur Expressway Junction",
+          "omr toll",
+          "elcot sez"
+        ],
+        "area": "OMR",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": 12.901,
+        "longitude": 80.2279,
+        "confidence": 0.88,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "injured",
+            "details": "Casualty with active physical trauma"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [
+        "ambulance",
+        "police",
+        "rescue personnel"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: OMR Sholinganallur Junction, OMR Corridor, Chennai",
+        "Detected Language: Telugu-English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-906",
+          "source": "whatsapp",
+          "sender": "Office Cab Driver WA",
+          "rawText": "OMR toll plaza FASTag scanner was taking 2 minutes extra per vehicle in morning.",
+          "language": "English",
+          "timestamp": "08:46 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-407",
+          "source": "social_media",
+          "sender": "Twitter @chennai_traffic",
+          "rawText": "Heavy 4km backlog on OMR toll plaza due to crane operations removing overturned container.",
+          "language": "English",
+          "timestamp": "08:49 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-404",
+          "source": "sms",
+          "sender": "Eyewitness +91-9790182736",
+          "rawText": "Three people trapped inside white sedan near ELCOT SEZ gate. Urgently dispatch crane and ambulance.",
+          "language": "English",
+          "timestamp": "08:15 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-403",
+          "source": "whatsapp",
+          "sender": "IT Tech Park WA +91-9884019283",
+          "rawText": "OMR toll daggara pedda accident aindi. Blood bleeding chala undi, hydraulic cutters needed to open doors.",
+          "language": "Telugu-English",
+          "timestamp": "08:12 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-402",
+          "source": "social_media",
+          "sender": "Twitter @omr_commuters",
+          "rawText": "Horrific crash at Sholinganallur signal! Car crushed under gravel lorry. Passengers trapped inside!",
+          "language": "English",
+          "timestamp": "08:08 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-401",
+          "source": "audio_call",
+          "sender": "100 Police Call #401",
+          "rawText": "Multi-vehicle collision on OMR expressway near Sholinganallur junction toll. Lorry overturned on 2 cars.",
+          "language": "English",
+          "timestamp": "08:05 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523817040-0.9724635329473483",
+          "timestamp": "08:12 AM",
+          "type": "urgency",
+          "label": "Urgency Escalated",
+          "from": "MEDIUM",
+          "to": "CRITICAL",
+          "sourceSignalId": "SIG-403",
+          "detail": "Elevated to CRITICAL due to: threat to human life, injured vulnerable person(s), and rapid water ingress/hazard propagation."
+        },
+        {
+          "id": "wc-1791523817040-0.041540058747078",
+          "timestamp": "08:12 AM",
+          "type": "vulnerable",
+          "label": "Vulnerable Person Identified",
+          "detail": "+ INJURED: Casualty with active physical trauma",
+          "sourceSignalId": "SIG-403"
+        },
+        {
+          "id": "wc-1791523817023",
+          "timestamp": "08:05 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 100 Police Call #401",
+          "sourceSignalId": "SIG-401"
+        }
+      ],
+      "createdAt": "08:05 AM",
+      "updatedAt": "08:46 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Identified matching landmark cluster (94% confidence) and contiguous flood/disaster sector. Signals share spatial centroid within 300m.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('OMR Sholinganallur Junction, omr toll, OMR Sholinganallur Expressway Junction') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM ACCIDENT at OMR Sholinganallur Junction, OMR Corridor, Chennai. People count unconfirmed. Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Turn on hazard warning flashers and place warning triangles/markers 50m behind collision to prevent pileup.",
+          "Turn off vehicle ignitions to prevent electrical sparks from igniting spilled fuel.",
+          "Deploy hydraulic cutters for vehicle extrication and maintain cervical spine immobilization for casualties.",
+          "Call 112 with exact landmark and number of injured passengers. Do not crowd the casualty area."
+        ],
+        "safeNextStepsTelugu": [
+          "హజార్డ్ లైట్లు ఆన్ చేయండి, ఇతర వాహనాలు ఢీకొనకుండా 50 మీటర్ల వెనుక హెచ్చరిక బోర్డు పెట్టండి.",
+          "ఇంధనం లీక్ అయితే మంటలు రాకుండా వాహనాల ఇంజిన్లను ఆపివేయండి.",
+          "వాహనంలో ఇరుక్కున్న వారిని బయటకు తీయడానికి హైడ్రాలిక్ కట్టర్లను ఉపయోగించండి.",
+          "ఖచ్చితమైన మైలురాయి మరియు క్షతగాత్రుల సంఖ్యతో 112 కు కాల్ చేయండి. గుమిగూడవద్దు."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Turn on hazard warning flashers and place warning triangles/markers 50m behind collision to prevent pileup.",
+            "instructionTelugu": "హజార్డ్ లైట్లు ఆన్ చేయండి, ఇతర వాహనాలు ఢీకొనకుండా 50 మీటర్ల వెనుక హెచ్చరిక బోర్డు పెట్టండి."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Turn off vehicle ignitions to prevent electrical sparks from igniting spilled fuel.",
+            "instructionTelugu": "ఇంధనం లీక్ అయితే మంటలు రాకుండా వాహనాల ఇంజిన్లను ఆపివేయండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Deploy hydraulic cutters for vehicle extrication and maintain cervical spine immobilization for casualties.",
+            "instructionTelugu": "వాహనంలో ఇరుక్కున్న వారిని బయటకు తీయడానికి హైడ్రాలిక్ కట్టర్లను ఉపయోగించండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Call 112 with exact landmark and number of injured passengers. Do not crowd the casualty area.",
+            "instructionTelugu": "ఖచ్చితమైన మైలురాయి మరియు క్షతగాత్రుల సంఖ్యతో 112 కు కాల్ చేయండి. గుమిగూడవద్దు."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-005",
+      "title": "OTHER - Local vicinity",
+      "incidentType": "other",
+      "classification": "emergency",
+      "location": {
+        "raw": "First aid rendered on spot to 7 individuals. Pregnant mother stabilized and transferred to hospital.",
+        "normalized": "Approximate Urban Sector, Chennai",
+        "landmarks": [
+          "Local vicinity"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "pregnant",
+            "details": "Pregnant mother requiring specialized medical transport"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Exact street address not specified in audio/text report"
+      ],
+      "evidence": [
+        "Normalized Landmark: Approximate Urban Sector, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: CRITICAL",
+        "Identified Vulnerable: PREGNANT"
+      ],
+      "signals": [
+        {
+          "id": "SIG-307",
+          "source": "field_responder",
+          "sender": "108 Paramedic Team Lead",
+          "rawText": "First aid rendered on spot to 7 individuals. Pregnant mother stabilized and transferred to hospital.",
+          "language": "English",
+          "timestamp": "09:10 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523816995",
+          "timestamp": "09:10 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via FIELD RESPONDER from 108 Paramedic Team Lead",
+          "sourceSignalId": "SIG-307"
+        }
+      ],
+      "createdAt": "09:10 AM",
+      "updatedAt": "09:10 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Elevated to CRITICAL due to: threat to human life, pregnant vulnerable person(s), and rapid water ingress/hazard propagation.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "CRITICAL OTHER at Approximate Urban Sector, Chennai. People count unconfirmed (pregnant). Advisory units: First responders.",
+        "immediateRisks": [
+          "Evolving hazard in urban sector requiring immediate responder reconnaissance.",
+          "Identified vulnerable persons (pregnant) requiring priority extraction."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి.",
+          "రక్షణ బృందాలు మొదట రక్షించవలసిన వృద్ధులు లేదా పిల్లలు ఉన్నారు."
+        ],
+        "safeNextSteps": [
+          "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+        ],
+        "safeNextStepsTelugu": [
+          "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+          "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+          "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+          "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+            "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+            "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+            "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+          },
+          {
+            "step": 4,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+            "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-004",
+      "title": "MEDICAL - T. Nagar Ranganathan Street",
+      "incidentType": "medical",
+      "classification": "emergency",
+      "location": {
+        "raw": "Heavy crowd surge at T. Nagar Ranganathan Street festival sale, 5 people collapsed unconscious due to suffocation.",
+        "normalized": "T. Nagar Ranganathan Street, T. Nagar, Chennai",
+        "landmarks": [
+          "T. Nagar Ranganathan Street",
+          "ranganathan street",
+          "usman road",
+          "t nagar",
+          "panagal park",
+          "t nagar bus terminus"
+        ],
+        "area": "T. Nagar",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": 13.0405,
+        "longitude": 80.2337,
+        "confidence": 0.88,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": 5,
+        "trapped": 5,
+        "vulnerable": [
+          {
+            "type": "infant",
+            "details": "Child/infant requiring immediate pediatric evacuation"
+          },
+          {
+            "type": "pregnant",
+            "details": "Pregnant mother requiring specialized medical transport"
+          }
+        ]
+      },
+      "peopleHistory": [
+        {
+          "count": 5,
+          "timestamp": "08:30 AM",
+          "label": "Initial report"
+        }
+      ],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [
+        "ambulance",
+        "medical team",
+        "police",
+        "rescue personnel"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: T. Nagar Ranganathan Street, T. Nagar, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: CRITICAL"
+      ],
+      "signals": [
+        {
+          "id": "SIG-308",
+          "source": "whatsapp",
+          "sender": "T Nagar Shopper +91-9840918273",
+          "rawText": "Situation under control now in Ranganathan street. Police cleared the main street passage.",
+          "language": "English",
+          "timestamp": "09:25 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-306",
+          "source": "audio_call",
+          "sender": "108 Medical Call #319",
+          "rawText": "Ambulance stuck 200m away on South Usman road due to crowd. Need police escort to reach casualties.",
+          "language": "English",
+          "timestamp": "08:48 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-305",
+          "source": "social_media",
+          "sender": "Twitter @chennai_citizen",
+          "rawText": "Do not go towards T Nagar Ranganathan street! Major medical emergency, multiple people fainted.",
+          "language": "English",
+          "timestamp": "08:45 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-304",
+          "source": "field_responder",
+          "sender": "Traffic Police Sub-Inspector #22",
+          "rawText": "Police barricades breached near T Nagar bus terminus. Diverting crowd into Panagal park.",
+          "language": "English",
+          "timestamp": "08:42 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-303",
+          "source": "sms",
+          "sender": "Shopper +91-9940128475",
+          "rawText": "Total chaos near Usman Road flyover entry. People fainting. Need oxygen cylinders and medical team.",
+          "language": "English",
+          "timestamp": "08:38 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-302",
+          "source": "whatsapp",
+          "sender": "T Nagar Traders Guild",
+          "rawText": "Ranganathan street lo stampede type situation. Oka pregnant lady and child collapsed. Send ambulance fast!",
+          "language": "Telugu-English",
+          "timestamp": "08:34 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-301",
+          "source": "audio_call",
+          "sender": "108 Medical Helpline #301",
+          "rawText": "Heavy crowd surge at T. Nagar Ranganathan Street festival sale, 5 people collapsed unconscious due to suffocation.",
+          "language": "English",
+          "timestamp": "08:30 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523816963-0.676125376876221",
+          "timestamp": "08:42 AM",
+          "type": "resource",
+          "label": "Emergency Resources Recommended",
+          "detail": "AI advised addition of: police, rescue personnel (Human approval required)",
+          "sourceSignalId": "SIG-304"
+        },
+        {
+          "id": "wc-1791523816949-0.8879623682356514",
+          "timestamp": "08:34 AM",
+          "type": "vulnerable",
+          "label": "Vulnerable Person Identified",
+          "detail": "+ PREGNANT: Pregnant mother requiring specialized medical transport",
+          "sourceSignalId": "SIG-302"
+        },
+        {
+          "id": "wc-1791523816949-0.9397267236307698",
+          "timestamp": "08:34 AM",
+          "type": "vulnerable",
+          "label": "Vulnerable Person Identified",
+          "detail": "+ INFANT: Child/infant requiring immediate pediatric evacuation",
+          "sourceSignalId": "SIG-302"
+        },
+        {
+          "id": "wc-1791523816935",
+          "timestamp": "08:30 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 108 Medical Helpline #301",
+          "sourceSignalId": "SIG-301"
+        }
+      ],
+      "createdAt": "08:30 AM",
+      "updatedAt": "09:25 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Identified matching landmark cluster (94% confidence) and contiguous flood/disaster sector. Signals share spatial centroid within 300m.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('T. Nagar Ranganathan Street, ranganathan street, T. Nagar Ranganathan Street') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM MEDICAL at T. Nagar Ranganathan Street, T. Nagar, Chennai. People count unconfirmed. Advisory units: First responders.",
+        "immediateRisks": [
+          "Acute vital risk requiring emergency paramedic life support."
+        ],
+        "immediateRisksTelugu": [
+          "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+        ],
+        "safeNextSteps": [
+          "Verify responsiveness and breathing. If unconscious and not breathing normally, begin Hands-Only CPR at 100-120 bpm.",
+          "If bleeding heavily, apply firm, continuous direct pressure with a clean cloth or sterile dressing.",
+          "Do NOT move trauma or collision victims unless there is immediate danger of fire, explosion, or collapse.",
+          "Dispatch ALS (Advanced Life Support) ambulance with trauma physician. Clear street access for fast egress."
+        ],
+        "safeNextStepsTelugu": [
+          "రోగి స్పృహ మరియు శ్వాసను తనిఖీ చేయండి. శ్వాస లేకపోతే తక్షణమే సిపిఆర్ (CPR) ప్రారంభించండి.",
+          "రక్తస్రావం జరుగుతుంటే శుభ్రమైన గుడ్డతో గట్టిగా నొక్కి పట్టుకోండి.",
+          "అగ్ని లేదా పేలుడు ప్రమాదం లేకపోతే క్షతగాత్రులను కదల్చకండి (వెన్నుపాము గాయాలు కావచ్చు).",
+          "అధునాతన లైఫ్ సపోర్ట్ అంబులెన్స్‌ను పంపండి. వాహనం రావడానికి వీధి మార్గాన్ని క్లియర్ చేయండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "medical",
+            "priority": "immediate",
+            "instruction": "Verify responsiveness and breathing. If unconscious and not breathing normally, begin Hands-Only CPR at 100-120 bpm.",
+            "instructionTelugu": "రోగి స్పృహ మరియు శ్వాసను తనిఖీ చేయండి. శ్వాస లేకపోతే తక్షణమే సిపిఆర్ (CPR) ప్రారంభించండి."
+          },
+          {
+            "step": 2,
+            "category": "medical",
+            "priority": "immediate",
+            "instruction": "If bleeding heavily, apply firm, continuous direct pressure with a clean cloth or sterile dressing.",
+            "instructionTelugu": "రక్తస్రావం జరుగుతుంటే శుభ్రమైన గుడ్డతో గట్టిగా నొక్కి పట్టుకోండి."
+          },
+          {
+            "step": 3,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Do NOT move trauma or collision victims unless there is immediate danger of fire, explosion, or collapse.",
+            "instructionTelugu": "అగ్ని లేదా పేలుడు ప్రమాదం లేకపోతే క్షతగాత్రులను కదల్చకండి (వెన్నుపాము గాయాలు కావచ్చు)."
+          },
+          {
+            "step": 4,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Dispatch ALS (Advanced Life Support) ambulance with trauma physician. Clear street access for fast egress.",
+            "instructionTelugu": "అధునాతన లైఫ్ సపోర్ట్ అంబులెన్స్‌ను పంపండి. వాహనం రావడానికి వీధి మార్గాన్ని క్లియర్ చేయండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Emergency Medical Services (Ambulance)",
+            "number": "108",
+            "category": "medical",
+            "description": "Trained paramedics, basic & advanced life support ambulances for trauma, stroke, and critical care.",
+            "descriptionTelugu": "అత్యవసర వైద్య రవాణా మరియు అంబులెన్స్ సేవలు.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Janani Shishu Suraksha (Maternal & Infant Ambulance)",
+            "number": "102",
+            "category": "medical",
+            "description": "Dedicated transport for pregnant mothers and newborns.",
+            "descriptionTelugu": "గర్భిణీ స్త్రీలు మరియు నవజాత శిశువుల కోసం ప్రత్యేక అంబులెన్స్ సేవ.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-003",
+      "title": "FIRE - Ambattur Industrial Estate",
+      "incidentType": "fire",
+      "classification": "emergency",
+      "location": {
+        "raw": "Massive chemical warehouse fire at Ambattur Industrial Estate Phase 2. Thick black smoke rising.",
+        "normalized": "Ambattur Industrial Estate, Ambattur, Chennai",
+        "landmarks": [
+          "Ambattur Industrial Estate",
+          "ambattur industrial",
+          "estate phase 2",
+          "Ambattur Industrial SIDCO Phase 2",
+          "ambattur estate",
+          "sidco ambattur"
+        ],
+        "area": "Ambattur",
+        "direction": "General",
+        "nearbyBuilding": "",
+        "relativePosition": "Vicinity",
+        "latitude": 13.1143,
+        "longitude": 80.1548,
+        "confidence": 0.88,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": [
+          {
+            "type": "injured",
+            "details": "Casualty with active physical trauma"
+          }
+        ]
+      },
+      "peopleHistory": [],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "rescue_in_progress",
+      "resources": [
+        "fire truck",
+        "ambulance",
+        "police",
+        "rescue personnel"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: Ambattur Industrial Estate, Ambattur, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-208",
+          "source": "field_responder",
+          "sender": "District Fire Officer",
+          "rawText": "Chemical fire at Ambattur controlled and cooling operations underway. Zero casualties.",
+          "language": "English",
+          "timestamp": "09:15 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-207",
+          "source": "audio_call",
+          "sender": "108 Ambulance Dispatch",
+          "rawText": "Two ambulances standing by at Ambattur industrial gate. Injured receiving burn triage.",
+          "language": "English",
+          "timestamp": "08:32 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-206",
+          "source": "whatsapp",
+          "sender": "Local Shopkeeper +91-9791028374",
+          "rawText": "Ambattur industrial estate road completely blocked with fire engines and police barricades.",
+          "language": "English",
+          "timestamp": "08:28 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-205",
+          "source": "field_responder",
+          "sender": "Ambattur Fire Tender 1",
+          "rawText": "Firefighters deployed on site at Ambattur SIDCO. 4 workers extracted with minor burn injuries.",
+          "language": "English",
+          "timestamp": "08:20 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-204",
+          "source": "sms",
+          "sender": "Factory Supervisor +91-9841029384",
+          "rawText": "Flammable solvents burning in Unit 14 Ambattur. Need 4 fire tenders and foam units immediately.",
+          "language": "English",
+          "timestamp": "08:02 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-203",
+          "source": "social_media",
+          "sender": "Twitter @chennai_traffic_watch",
+          "rawText": "Explosions heard at SIDCO Ambattur paint factory. Smoke visible from 5 km away.",
+          "language": "English",
+          "timestamp": "07:55 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-202",
+          "source": "whatsapp",
+          "sender": "Ambattur Factory Workers WA",
+          "rawText": "Ambattur estate lo pedda manta vacchindi, 4 workers inside trapped unnaru! Fire engine urgent!",
+          "language": "Telugu-English",
+          "timestamp": "07:50 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-201",
+          "source": "audio_call",
+          "sender": "101 Fire Call #201",
+          "rawText": "Massive chemical warehouse fire at Ambattur Industrial Estate Phase 2. Thick black smoke rising.",
+          "language": "English",
+          "timestamp": "07:45 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523816934-0.16435702479021463",
+          "timestamp": "09:15 AM",
+          "type": "status",
+          "label": "Operational Status Updated",
+          "from": "ACTIVE",
+          "to": "RESCUE IN PROGRESS",
+          "sourceSignalId": "SIG-208",
+          "detail": "✓ Rescue team reached location. Active extraction underway."
+        },
+        {
+          "id": "wc-1791523816922-0.7737906867193263",
+          "timestamp": "08:32 AM",
+          "type": "vulnerable",
+          "label": "Vulnerable Person Identified",
+          "detail": "+ INJURED: Casualty with active physical trauma",
+          "sourceSignalId": "SIG-207"
+        },
+        {
+          "id": "wc-1791523816913-0.29370019889788423",
+          "timestamp": "08:28 AM",
+          "type": "status",
+          "label": "Operational Status Updated",
+          "from": "RESCUE IN PROGRESS",
+          "to": "ACTIVE",
+          "sourceSignalId": "SIG-206",
+          "detail": "✓ Rescue team reached location. Active extraction underway."
+        },
+        {
+          "id": "wc-1791523816902-0.2013645708898737",
+          "timestamp": "08:20 AM",
+          "type": "status",
+          "label": "Operational Status Updated",
+          "from": "ACTIVE",
+          "to": "RESCUE IN PROGRESS",
+          "sourceSignalId": "SIG-205",
+          "detail": "✓ Rescue team reached location. Active extraction underway."
+        },
+        {
+          "id": "wc-1791523816862-0.6804073498510066",
+          "timestamp": "07:50 AM",
+          "type": "urgency",
+          "label": "Urgency Escalated",
+          "from": "MEDIUM",
+          "to": "CRITICAL",
+          "sourceSignalId": "SIG-202",
+          "detail": "Elevated to CRITICAL due to: threat to human life, escalating hazard kinetics, and rapid water ingress/hazard propagation."
+        },
+        {
+          "id": "wc-1791523816849",
+          "timestamp": "07:45 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 101 Fire Call #201",
+          "sourceSignalId": "SIG-201"
+        }
+      ],
+      "createdAt": "07:45 AM",
+      "updatedAt": "09:15 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Identified matching landmark cluster (94% confidence) and contiguous flood/disaster sector. Signals share spatial centroid within 300m.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('Ambattur Industrial SIDCO Phase 2') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM FIRE at Ambattur Industrial SIDCO Phase 2, Ambattur. People count unconfirmed. Advisory units: fire truck, ambulance, police, rescue personnel.",
+        "immediateRisks": [
+          "Smoke inhalation hazard, active flame propagation, and structural instability."
+        ],
+        "immediateRisksTelugu": [
+          "దట్టమైన పొగ మరియు మంటలు వ్యాపించే ప్రమాదం."
+        ],
+        "safeNextSteps": [
+          "Evacuate the premises immediately. Do not stop to retrieve valuables or use elevators.",
+          "Stay low beneath the rising smoke layer. Cover nose and mouth with a damp cloth if available.",
+          "Check doors with the back of your hand before turning handles. If door is hot, do not open it.",
+          "Connect fire hydrant lines, isolate industrial gas pipelines, and establish a 100m safety perimeter.",
+          "Assemble at designated open assembly point and conduct headcounts of all family or shift members."
+        ],
+        "safeNextStepsTelugu": [
+          "భవనం నుండి తక్షణమే బయటకు రండి. విలువైన వస్తువుల కోసం ఆగవద్దు, లిఫ్ట్ ఉపయోగించవద్దు.",
+          "పొగ ఎక్కువగా ఉంటే నేలపై వంగి నడవండి. తడి గుడ్డను ముక్కు మరియు నోటికి అడ్డుగా ఉంచండి.",
+          "తలుపులు తెరిచే ముందు చేతి వెనుక భాగంతో తాకి చూడండి. వేడిగా ఉంటే తలుపు తెరవకండి.",
+          "ఫైర్ ఇంజిన్ లైన్లు ఏర్పాటు చేయండి, గ్యాస్ పైప్‌లైన్లను ఆపివేయండి, 100 మీటర్ల భద్రతా సరిహద్దును ఏర్పరచండి.",
+          "బహిరంగ ప్రదేశంలో సమావేశమై కుటుంబ సభ్యులు లేదా సహోద్యోగుల సంఖ్యను సరిచూసుకోండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Evacuate the premises immediately. Do not stop to retrieve valuables or use elevators.",
+            "instructionTelugu": "భవనం నుండి తక్షణమే బయటకు రండి. విలువైన వస్తువుల కోసం ఆగవద్దు, లిఫ్ట్ ఉపయోగించవద్దు."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Stay low beneath the rising smoke layer. Cover nose and mouth with a damp cloth if available.",
+            "instructionTelugu": "పొగ ఎక్కువగా ఉంటే నేలపై వంగి నడవండి. తడి గుడ్డను ముక్కు మరియు నోటికి అడ్డుగా ఉంచండి."
+          },
+          {
+            "step": 3,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Check doors with the back of your hand before turning handles. If door is hot, do not open it.",
+            "instructionTelugu": "తలుపులు తెరిచే ముందు చేతి వెనుక భాగంతో తాకి చూడండి. వేడిగా ఉంటే తలుపు తెరవకండి."
+          },
+          {
+            "step": 4,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Connect fire hydrant lines, isolate industrial gas pipelines, and establish a 100m safety perimeter.",
+            "instructionTelugu": "ఫైర్ ఇంజిన్ లైన్లు ఏర్పాటు చేయండి, గ్యాస్ పైప్‌లైన్లను ఆపివేయండి, 100 మీటర్ల భద్రతా సరిహద్దును ఏర్పరచండి."
+          },
+          {
+            "step": 5,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Assemble at designated open assembly point and conduct headcounts of all family or shift members.",
+            "instructionTelugu": "బహిరంగ ప్రదేశంలో సమావేశమై కుటుంబ సభ్యులు లేదా సహోద్యోగుల సంఖ్యను సరిచూసుకోండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "Fire & Rescue Services",
+            "number": "101",
+            "category": "national",
+            "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+            "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "Women Distress Helpline",
+            "number": "1091",
+            "category": "national",
+            "description": "Immediate safety support and crisis response for women.",
+            "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Childline Emergency",
+            "number": "1098",
+            "category": "national",
+            "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+            "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-002",
+      "title": "FLOOD - Station Backside Medical Shop",
+      "incidentType": "flood",
+      "classification": "emergency",
+      "location": {
+        "raw": "Opposite the medical shop near the station backside road water is neck deep, family shouting for help.",
+        "normalized": "Station Backside Medical Shop, Chennai Metropolitan Area",
+        "landmarks": [
+          "Station Backside Medical Shop"
+        ],
+        "area": "Chennai Metropolitan Area",
+        "direction": "General",
+        "nearbyBuilding": "Medical Shop / Pharmacy",
+        "relativePosition": "Rear service road behind station",
+        "latitude": null,
+        "longitude": null,
+        "confidence": 0.85,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": null,
+        "trapped": null,
+        "vulnerable": []
+      },
+      "peopleHistory": [],
+      "urgency": "medium",
+      "severity": "medium",
+      "status": "active",
+      "resources": [
+        "rescue boat",
+        "medical team",
+        "ambulance"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: Station Backside Medical Shop, Chennai Metropolitan Area",
+        "Detected Language: English",
+        "Signal Urgency: MEDIUM"
+      ],
+      "signals": [
+        {
+          "id": "SIG-107",
+          "source": "whatsapp",
+          "sender": "Resident Group Velachery",
+          "rawText": "Opposite the medical shop near the station backside road water is neck deep, family shouting for help.",
+          "language": "English",
+          "timestamp": "08:22 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523816795",
+          "timestamp": "08:22 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via WHATSAPP from Resident Group Velachery",
+          "sourceSignalId": "SIG-107"
+        }
+      ],
+      "createdAt": "08:22 AM",
+      "updatedAt": "08:22 AM",
+      "conflictCount": 0,
+      "aiExplanations": {
+        "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('Station Backside Medical Shop') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM FLOOD at Station Backside Medical Shop, Chennai Metropolitan Area. People count unconfirmed. Advisory units: rescue boat, medical team, ambulance.",
+        "immediateRisks": [
+          "Rapid water rise threatening ground-floor entrapment and electrical hazards."
+        ],
+        "immediateRisksTelugu": [
+          "వరద నీరు వేగంగా పెరగడం వల్ల నేల అంతస్తులో ఇరుక్కుపోయే ప్రమాదం."
+        ],
+        "safeNextSteps": [
+          "Move immediately to the highest accessible floor or roof terrace. Avoid basements, cellars, and underpasses.",
+          "Switch off main electrical breaker and gas cylinders if accessible safely without stepping into water.",
+          "Do not attempt to walk, swim, or drive through flowing water. Even 6 inches of rapid water can sweep adults.",
+          "Deploy inflatable rescue boats with life jackets. Prioritize elderly individuals, infants, and pregnant occupants.",
+          "Signal location using a bright cloth, white sheet, or phone torch from terrace toward search teams."
+        ],
+        "safeNextStepsTelugu": [
+          "తక్షణమే పై అంతస్తుకు లేదా డాబాపైకి వెళ్ళండి. నేలమాళిగలు మరియు భూగర్భ ప్రాంతాలను నివారించండి.",
+          "నీటిలో అడుగుపెట్టకుండా సురక్షితంగా ఉంటే మెయిన్ స్విచ్ మరియు గ్యాస్ సిలిండర్లను ఆపివేయండి.",
+          "ప్రవహించే నీటిలో నడవడానికి, ఈదడానికి లేదా వాహనం నడపడానికి ప్రయత్నించవద్దు.",
+          "లైఫ్ జాకెట్లతో రబ్బరు రెస్క్యూ బోట్లను పంపండి. వృద్ధులు మరియు పిల్లలకు మొదటి ప్రాధాన్యత ఇవ్వండి.",
+          "డాబా పైనుండి రెస్క్యూ బృందాలకు కనిపించేలా తెల్లటి గుడ్డ లేదా మొబైల్ టార్చ్ తో సంకేతం ఇవ్వండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Move immediately to the highest accessible floor or roof terrace. Avoid basements, cellars, and underpasses.",
+            "instructionTelugu": "తక్షణమే పై అంతస్తుకు లేదా డాబాపైకి వెళ్ళండి. నేలమాళిగలు మరియు భూగర్భ ప్రాంతాలను నివారించండి."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Switch off main electrical breaker and gas cylinders if accessible safely without stepping into water.",
+            "instructionTelugu": "నీటిలో అడుగుపెట్టకుండా సురక్షితంగా ఉంటే మెయిన్ స్విచ్ మరియు గ్యాస్ సిలిండర్లను ఆపివేయండి."
+          },
+          {
+            "step": 3,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Do not attempt to walk, swim, or drive through flowing water. Even 6 inches of rapid water can sweep adults.",
+            "instructionTelugu": "ప్రవహించే నీటిలో నడవడానికి, ఈదడానికి లేదా వాహనం నడపడానికి ప్రయత్నించవద్దు."
+          },
+          {
+            "step": 4,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Deploy inflatable rescue boats with life jackets. Prioritize elderly individuals, infants, and pregnant occupants.",
+            "instructionTelugu": "లైఫ్ జాకెట్లతో రబ్బరు రెస్క్యూ బోట్లను పంపండి. వృద్ధులు మరియు పిల్లలకు మొదటి ప్రాధాన్యత ఇవ్వండి."
+          },
+          {
+            "step": 5,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Signal location using a bright cloth, white sheet, or phone torch from terrace toward search teams.",
+            "instructionTelugu": "డాబా పైనుండి రెస్క్యూ బృందాలకు కనిపించేలా తెల్లటి గుడ్డ లేదా మొబైల్ టార్చ్ తో సంకేతం ఇవ్వండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "State Disaster Management Authority (SDMA)",
+            "number": "1070",
+            "category": "disaster",
+            "description": "State-level disaster control room during floods, cyclones, and industrial emergencies.",
+            "descriptionTelugu": "రాష్ట్ర విపత్తు నిర్వహణ విభాగం కంట్రోల్ రూమ్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "District Emergency Operations Centre (DEOC)",
+            "number": "1077",
+            "category": "disaster",
+            "description": "District collectorate crisis response desk for localized relief and evacuation coordination.",
+            "descriptionTelugu": "జిల్లా విపత్తు అత్యవసర నిర్వహణ కేంద్రం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Disaster Response Force (NDRF) HQ",
+            "number": "011-24363260",
+            "category": "disaster",
+            "description": "Central command for federal flood rescue boats, hazmat teams, and canine search units.",
+            "descriptionTelugu": "జాతీయ విపత్తు ప్రతిస్పందన దళం (NDRF) ప్రధాన కార్యాలయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "INC-001",
+      "title": "FLOOD - Velachery MRTS Station",
+      "incidentType": "flood",
+      "classification": "emergency",
+      "location": {
+        "raw": "Water entered houses near Velachery MRTS west gate, 6 people trapped inside.",
+        "normalized": "Velachery MRTS Station, Velachery, Chennai",
+        "landmarks": [
+          "Velachery MRTS Station",
+          "velachery mrts",
+          "west gate",
+          "West Gate",
+          "vijayanagar side",
+          "station venakala",
+          "Vijayanagar Side",
+          "velachery mrts daggara",
+          "Local vicinity",
+          "mrts station"
+        ],
+        "area": "Velachery",
+        "direction": "West",
+        "nearbyBuilding": "",
+        "relativePosition": "Adjacent to West Gate entrance",
+        "latitude": 12.9785,
+        "longitude": 80.2185,
+        "confidence": 0.88,
+        "isApproximate": true
+      },
+      "people": {
+        "affected": 10,
+        "trapped": 10,
+        "vulnerable": [
+          {
+            "type": "elderly",
+            "details": "Elderly citizen inside premises requiring mobility assistance"
+          }
+        ]
+      },
+      "peopleHistory": [
+        {
+          "count": 6,
+          "timestamp": "08:10 AM",
+          "label": "Initial report"
+        },
+        {
+          "count": 10,
+          "timestamp": "08:25 AM",
+          "label": "Reported via sms"
+        }
+      ],
+      "urgency": "critical",
+      "severity": "high",
+      "status": "active",
+      "resources": [
+        "rescue boat",
+        "medical team",
+        "ambulance",
+        "rescue personnel",
+        "emergency supplies",
+        "police"
+      ],
+      "confidence": 0.93,
+      "uncertainties": [
+        "Pinpoint building entry point requires field responder verification"
+      ],
+      "evidence": [
+        "Normalized Landmark: Velachery MRTS Station, Velachery, Chennai",
+        "Detected Language: English",
+        "Signal Urgency: HIGH"
+      ],
+      "signals": [
+        {
+          "id": "SIG-907",
+          "source": "audio_call",
+          "sender": "Non-Emergency Enquiry Call #88",
+          "rawText": "Enquiry: Is the local train from Velachery to Chennai Beach running on time today?",
+          "language": "English",
+          "timestamp": "08:55 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-904",
+          "source": "sms",
+          "sender": "Spam SMS +91-7788990011",
+          "rawText": "Flash sale at Phoenix Marketcity Velachery! Up to 50% discount on clothing brands this weekend.",
+          "language": "English",
+          "timestamp": "08:33 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-110",
+          "source": "sms",
+          "sender": "SMS +91-9884112233",
+          "rawText": "Power cut near Velachery MRTS behind station. Elderly patient needs oxygen support.",
+          "language": "English",
+          "timestamp": "08:35 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-109",
+          "source": "social_media",
+          "sender": "Instagram @chennai_updates",
+          "rawText": "Drone visual showing Velachery MRTS west gate submerged. Relief team arriving.",
+          "language": "English",
+          "timestamp": "08:52 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-108",
+          "source": "audio_call",
+          "sender": "112 Call #118",
+          "rawText": "Velachery MRTS station daggara water level chala ekkuva undi, boats kavali urgent ga.",
+          "language": "Telugu-English",
+          "timestamp": "08:31 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-106",
+          "source": "field_responder",
+          "sender": "Fire & Rescue Station Officer",
+          "rawText": "All 10 residents including the elderly person evacuated safely. Everyone rescued.",
+          "language": "English",
+          "timestamp": "09:30 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-105",
+          "source": "field_responder",
+          "sender": "NDRF Unit 4 Radio",
+          "rawText": "NDRF Rescue boat team reached the building behind MRTS west gate. Extraction underway.",
+          "language": "English",
+          "timestamp": "09:05 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-104",
+          "source": "social_media",
+          "sender": "Twitter @chennai_flood_alert",
+          "rawText": "Velachery MRTS daggara water chala perigindi rapidly rising, immediate rescue boat needed!",
+          "language": "Telugu-English",
+          "timestamp": "08:40 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-103",
+          "source": "sms",
+          "sender": "SMS +91-9444012345",
+          "rawText": "Update from MRTS west gate: count is 10 people now trapped on the roof terrace as water reaches 4 feet.",
+          "language": "English",
+          "timestamp": "08:25 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-102",
+          "source": "whatsapp",
+          "sender": "WhatsApp +91-9840123451",
+          "rawText": "Station venakala Vijayanagar side lo water vachindi, same place an elderly person inside lo unnaru.",
+          "language": "Telugu-English",
+          "timestamp": "08:16 AM",
+          "isDemoConnector": true
+        },
+        {
+          "id": "SIG-101",
+          "source": "audio_call",
+          "sender": "112 Call #101",
+          "rawText": "Water entered houses near Velachery MRTS west gate, 6 people trapped inside.",
+          "language": "English",
+          "timestamp": "08:10 AM",
+          "isDemoConnector": true
+        }
+      ],
+      "whatChanged": [
+        {
+          "id": "wc-1791523816810-0.9332032518893938",
+          "timestamp": "08:31 AM",
+          "type": "status",
+          "label": "Operational Status Updated",
+          "from": "RESOLVED",
+          "to": "ACTIVE",
+          "sourceSignalId": "SIG-108",
+          "detail": "✓ Rescue team reached location. Active extraction underway."
+        },
+        {
+          "id": "wc-1791523816781-0.7851849789744223",
+          "timestamp": "09:30 AM",
+          "type": "status",
+          "label": "Operational Status Updated",
+          "from": "ACTIVE",
+          "to": "RESOLVED",
+          "sourceSignalId": "SIG-106",
+          "detail": "✓ Everyone evacuated and accounted for. Incident resolved."
+        },
+        {
+          "id": "wc-1791523816768-0.39194859184585207",
+          "timestamp": "09:05 AM",
+          "type": "resource",
+          "label": "Emergency Resources Recommended",
+          "detail": "AI advised addition of: police (Human approval required)",
+          "sourceSignalId": "SIG-105"
+        },
+        {
+          "id": "wc-1791523816753-0.3216545546104719",
+          "timestamp": "08:25 AM",
+          "type": "resource",
+          "label": "Emergency Resources Recommended",
+          "detail": "AI advised addition of: rescue personnel, emergency supplies (Human approval required)",
+          "sourceSignalId": "SIG-103"
+        },
+        {
+          "id": "wc-1791523816753-0.13221817319402995",
+          "timestamp": "08:25 AM",
+          "type": "people",
+          "label": "People Affected Count Updated",
+          "from": 6,
+          "to": 10,
+          "sourceSignalId": "SIG-103",
+          "detail": "Updated report indicates count changed from 6 to 10 individuals trapped/affected. Prior count retained in incident timeline history."
+        },
+        {
+          "id": "wc-1791523816739-0.5462953823357979",
+          "timestamp": "08:16 AM",
+          "type": "urgency",
+          "label": "Urgency Escalated",
+          "from": "HIGH",
+          "to": "CRITICAL",
+          "sourceSignalId": "SIG-102",
+          "detail": "Elevated to CRITICAL due to: threat to human life, elderly vulnerable person(s), and rapid water ingress/hazard propagation."
+        },
+        {
+          "id": "wc-1791523816739-0.776919859405111",
+          "timestamp": "08:16 AM",
+          "type": "vulnerable",
+          "label": "Vulnerable Person Identified",
+          "detail": "+ ELDERLY: Elderly citizen inside premises requiring mobility assistance",
+          "sourceSignalId": "SIG-102"
+        },
+        {
+          "id": "wc-1791523816731",
+          "timestamp": "08:10 AM",
+          "type": "note",
+          "label": "Incident Record Created",
+          "detail": "Initial signal ingested via AUDIO CALL from 112 Call #101",
+          "sourceSignalId": "SIG-101"
+        }
+      ],
+      "createdAt": "08:10 AM",
+      "updatedAt": "08:55 AM",
+      "conflictCount": 1,
+      "aiExplanations": {
+        "whySameIncident": "Identified matching landmark cluster (94% confidence) and contiguous flood/disaster sector. Signals share spatial centroid within 300m.",
+        "whyCritical": "Assessed as MEDIUM based on localized scope and absence of confirmed vulnerable entrapment.",
+        "whyApproximateLocation": "Report references descriptive urban landmarks ('Velachery MRTS Station') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+      },
+      "isDemoRecord": true,
+      "summary": {
+        "responderBrief": "MEDIUM FLOOD at Velachery MRTS Station, Velachery. People count unconfirmed. Advisory units: First responders.",
+        "immediateRisks": [
+          "Rapid water rise threatening ground-floor entrapment and electrical hazards."
+        ],
+        "immediateRisksTelugu": [
+          "వరద నీరు వేగంగా పెరగడం వల్ల నేల అంతస్తులో ఇరుక్కుపోయే ప్రమాదం."
+        ],
+        "safeNextSteps": [
+          "Move immediately to the highest accessible floor or roof terrace. Avoid basements, cellars, and underpasses.",
+          "Switch off main electrical breaker and gas cylinders if accessible safely without stepping into water.",
+          "Do not attempt to walk, swim, or drive through flowing water. Even 6 inches of rapid water can sweep adults.",
+          "Deploy inflatable rescue boats with life jackets. Prioritize elderly individuals, infants, and pregnant occupants.",
+          "Signal location using a bright cloth, white sheet, or phone torch from terrace toward search teams."
+        ],
+        "safeNextStepsTelugu": [
+          "తక్షణమే పై అంతస్తుకు లేదా డాబాపైకి వెళ్ళండి. నేలమాళిగలు మరియు భూగర్భ ప్రాంతాలను నివారించండి.",
+          "నీటిలో అడుగుపెట్టకుండా సురక్షితంగా ఉంటే మెయిన్ స్విచ్ మరియు గ్యాస్ సిలిండర్లను ఆపివేయండి.",
+          "ప్రవహించే నీటిలో నడవడానికి, ఈదడానికి లేదా వాహనం నడపడానికి ప్రయత్నించవద్దు.",
+          "లైఫ్ జాకెట్లతో రబ్బరు రెస్క్యూ బోట్లను పంపండి. వృద్ధులు మరియు పిల్లలకు మొదటి ప్రాధాన్యత ఇవ్వండి.",
+          "డాబా పైనుండి రెస్క్యూ బృందాలకు కనిపించేలా తెల్లటి గుడ్డ లేదా మొబైల్ టార్చ్ తో సంకేతం ఇవ్వండి."
+        ],
+        "actionChecklist": [
+          {
+            "step": 1,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Move immediately to the highest accessible floor or roof terrace. Avoid basements, cellars, and underpasses.",
+            "instructionTelugu": "తక్షణమే పై అంతస్తుకు లేదా డాబాపైకి వెళ్ళండి. నేలమాళిగలు మరియు భూగర్భ ప్రాంతాలను నివారించండి."
+          },
+          {
+            "step": 2,
+            "category": "citizen",
+            "priority": "immediate",
+            "instruction": "Switch off main electrical breaker and gas cylinders if accessible safely without stepping into water.",
+            "instructionTelugu": "నీటిలో అడుగుపెట్టకుండా సురక్షితంగా ఉంటే మెయిన్ స్విచ్ మరియు గ్యాస్ సిలిండర్లను ఆపివేయండి."
+          },
+          {
+            "step": 3,
+            "category": "citizen",
+            "priority": "high",
+            "instruction": "Do not attempt to walk, swim, or drive through flowing water. Even 6 inches of rapid water can sweep adults.",
+            "instructionTelugu": "ప్రవహించే నీటిలో నడవడానికి, ఈదడానికి లేదా వాహనం నడపడానికి ప్రయత్నించవద్దు."
+          },
+          {
+            "step": 4,
+            "category": "responder",
+            "priority": "immediate",
+            "instruction": "Deploy inflatable rescue boats with life jackets. Prioritize elderly individuals, infants, and pregnant occupants.",
+            "instructionTelugu": "లైఫ్ జాకెట్లతో రబ్బరు రెస్క్యూ బోట్లను పంపండి. వృద్ధులు మరియు పిల్లలకు మొదటి ప్రాధాన్యత ఇవ్వండి."
+          },
+          {
+            "step": 5,
+            "category": "citizen",
+            "priority": "advisory",
+            "instruction": "Signal location using a bright cloth, white sheet, or phone torch from terrace toward search teams.",
+            "instructionTelugu": "డాబా పైనుండి రెస్క్యూ బృందాలకు కనిపించేలా తెల్లటి గుడ్డ లేదా మొబైల్ టార్చ్ తో సంకేతం ఇవ్వండి."
+          }
+        ],
+        "recommendedContacts": [
+          {
+            "service": "National Emergency Response Support System (ERSS)",
+            "number": "112",
+            "category": "national",
+            "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+            "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+            "isVerified": true,
+            "hours": "24/7 / 365 Days"
+          },
+          {
+            "service": "State Disaster Management Authority (SDMA)",
+            "number": "1070",
+            "category": "disaster",
+            "description": "State-level disaster control room during floods, cyclones, and industrial emergencies.",
+            "descriptionTelugu": "రాష్ట్ర విపత్తు నిర్వహణ విభాగం కంట్రోల్ రూమ్.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "District Emergency Operations Centre (DEOC)",
+            "number": "1077",
+            "category": "disaster",
+            "description": "District collectorate crisis response desk for localized relief and evacuation coordination.",
+            "descriptionTelugu": "జిల్లా విపత్తు అత్యవసర నిర్వహణ కేంద్రం.",
+            "isVerified": true,
+            "hours": "24/7"
+          },
+          {
+            "service": "National Disaster Response Force (NDRF) HQ",
+            "number": "011-24363260",
+            "category": "disaster",
+            "description": "Central command for federal flood rescue boats, hazmat teams, and canine search units.",
+            "descriptionTelugu": "జాతీయ విపత్తు ప్రతిస్పందన దళం (NDRF) ప్రధాన కార్యాలయం.",
+            "isVerified": true,
+            "hours": "24/7"
+          }
+        ]
+      },
+      "notes": []
+    }
+  ],
+  "rawReports": [
+    {
+      "id": "SIG-908",
+      "source": "social_media",
+      "sender": "Twitter @anonymous_rumor",
+      "rawText": "Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.",
+      "language": "English",
+      "timestamp": "08:58 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-907",
+      "source": "audio_call",
+      "sender": "Non-Emergency Enquiry Call #88",
+      "rawText": "Enquiry: Is the local train from Velachery to Chennai Beach running on time today?",
+      "language": "English",
+      "timestamp": "08:55 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-906",
+      "source": "whatsapp",
+      "sender": "Office Cab Driver WA",
+      "rawText": "OMR toll plaza FASTag scanner was taking 2 minutes extra per vehicle in morning.",
+      "language": "English",
+      "timestamp": "08:46 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-905",
+      "source": "social_media",
+      "sender": "Twitter @chennai_food_lover",
+      "rawText": "Best biryani near T Nagar Ranganathan street? Craving spicy food in this rainy weather.",
+      "language": "English",
+      "timestamp": "08:41 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-904",
+      "source": "sms",
+      "sender": "Spam SMS +91-7788990011",
+      "rawText": "Flash sale at Phoenix Marketcity Velachery! Up to 50% discount on clothing brands this weekend.",
+      "language": "English",
+      "timestamp": "08:33 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-903",
+      "source": "social_media",
+      "sender": "Twitter @commuter_life",
+      "rawText": "Kathipara flyover regular peak hour slow movement as usual. Signal timing needs improvement.",
+      "language": "English",
+      "timestamp": "08:26 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-902",
+      "source": "whatsapp",
+      "sender": "WhatsApp Group Friends",
+      "rawText": "Good morning guys, heavy rain in Chennai today weather is so pleasant! Having hot filter coffee.",
+      "language": "English",
+      "timestamp": "08:18 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-901",
+      "source": "social_media",
+      "sender": "Twitter @foodie_chennai",
+      "rawText": "Traffic is heavy near Velachery bypass road today. Anyone know why Swiggy delivery is delayed?",
+      "language": "English",
+      "timestamp": "08:14 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-508",
+      "source": "field_responder",
+      "sender": "Greater Chennai Corporation Engineer",
+      "rawText": "Building completely evacuated and red-tagged. No occupants remaining inside. Area secured.",
+      "language": "English",
+      "timestamp": "09:12 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-507",
+      "source": "field_responder",
+      "sender": "SDRF Team Leader",
+      "rawText": "Senior citizens evacuated using aerial ladder platform. 12 residents led out safely.",
+      "language": "English",
+      "timestamp": "08:50 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-506",
+      "source": "audio_call",
+      "sender": "112 Call #530",
+      "rawText": "Two bedridden senior citizens on 3rd floor cannot climb stairs. Need stretcher team immediately.",
+      "language": "English",
+      "timestamp": "08:22 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-505",
+      "source": "social_media",
+      "sender": "Twitter @guindy_buzz",
+      "rawText": "Police sealing off service lane near Kathipara cloverleaf. Building tilt reported by engineers.",
+      "language": "English",
+      "timestamp": "08:14 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-504",
+      "source": "field_responder",
+      "sender": "Disaster Response Force Alpha",
+      "rawText": "SDRF squad deployed at Guindy commercial block. Initiating phased perimeter cordoning and stairway evacuation.",
+      "language": "English",
+      "timestamp": "08:00 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-503",
+      "source": "sms",
+      "sender": "Resident +91-9840192847",
+      "rawText": "Vibrations from metro construction caused wall collapse in old complex near Guindy station. People panicked.",
+      "language": "English",
+      "timestamp": "07:42 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-502",
+      "source": "whatsapp",
+      "sender": "Guindy Shop Owners",
+      "rawText": "Building pillar crack aindi Kathipara bridge pakkana! 15 people still inside second floor, need evacuation!",
+      "language": "Telugu-English",
+      "timestamp": "07:36 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-501",
+      "source": "audio_call",
+      "sender": "112 Call #501",
+      "rawText": "Deep structural cracks appeared on 4-storey commercial building near Kathipara junction Guindy. Plaster falling.",
+      "language": "English",
+      "timestamp": "07:30 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-408",
+      "source": "field_responder",
+      "sender": "Highway Patrol Inspector",
+      "rawText": "Third victim extracted safely. Wreckage cleared to emergency lane. Traffic moving slowly.",
+      "language": "English",
+      "timestamp": "09:20 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-407",
+      "source": "social_media",
+      "sender": "Twitter @chennai_traffic",
+      "rawText": "Heavy 4km backlog on OMR toll plaza due to crane operations removing overturned container.",
+      "language": "English",
+      "timestamp": "08:49 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-406",
+      "source": "audio_call",
+      "sender": "108 Dispatcher Call #420",
+      "rawText": "2 casualties extracted with fractures, en route to Chettinad Health City. 1 driver still pinned.",
+      "language": "English",
+      "timestamp": "08:36 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-405",
+      "source": "field_responder",
+      "sender": "Highway Patrol Team #09",
+      "rawText": "Highway patrol on scene at Sholinganallur. Traffic halted on northbound carriageway. Extrication in progress.",
+      "language": "English",
+      "timestamp": "08:24 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-404",
+      "source": "sms",
+      "sender": "Eyewitness +91-9790182736",
+      "rawText": "Three people trapped inside white sedan near ELCOT SEZ gate. Urgently dispatch crane and ambulance.",
+      "language": "English",
+      "timestamp": "08:15 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-403",
+      "source": "whatsapp",
+      "sender": "IT Tech Park WA +91-9884019283",
+      "rawText": "OMR toll daggara pedda accident aindi. Blood bleeding chala undi, hydraulic cutters needed to open doors.",
+      "language": "Telugu-English",
+      "timestamp": "08:12 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-402",
+      "source": "social_media",
+      "sender": "Twitter @omr_commuters",
+      "rawText": "Horrific crash at Sholinganallur signal! Car crushed under gravel lorry. Passengers trapped inside!",
+      "language": "English",
+      "timestamp": "08:08 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-401",
+      "source": "audio_call",
+      "sender": "100 Police Call #401",
+      "rawText": "Multi-vehicle collision on OMR expressway near Sholinganallur junction toll. Lorry overturned on 2 cars.",
+      "language": "English",
+      "timestamp": "08:05 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-308",
+      "source": "whatsapp",
+      "sender": "T Nagar Shopper +91-9840918273",
+      "rawText": "Situation under control now in Ranganathan street. Police cleared the main street passage.",
+      "language": "English",
+      "timestamp": "09:25 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-307",
+      "source": "field_responder",
+      "sender": "108 Paramedic Team Lead",
+      "rawText": "First aid rendered on spot to 7 individuals. Pregnant mother stabilized and transferred to hospital.",
+      "language": "English",
+      "timestamp": "09:10 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-306",
+      "source": "audio_call",
+      "sender": "108 Medical Call #319",
+      "rawText": "Ambulance stuck 200m away on South Usman road due to crowd. Need police escort to reach casualties.",
+      "language": "English",
+      "timestamp": "08:48 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-305",
+      "source": "social_media",
+      "sender": "Twitter @chennai_citizen",
+      "rawText": "Do not go towards T Nagar Ranganathan street! Major medical emergency, multiple people fainted.",
+      "language": "English",
+      "timestamp": "08:45 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-304",
+      "source": "field_responder",
+      "sender": "Traffic Police Sub-Inspector #22",
+      "rawText": "Police barricades breached near T Nagar bus terminus. Diverting crowd into Panagal park.",
+      "language": "English",
+      "timestamp": "08:42 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-303",
+      "source": "sms",
+      "sender": "Shopper +91-9940128475",
+      "rawText": "Total chaos near Usman Road flyover entry. People fainting. Need oxygen cylinders and medical team.",
+      "language": "English",
+      "timestamp": "08:38 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-302",
+      "source": "whatsapp",
+      "sender": "T Nagar Traders Guild",
+      "rawText": "Ranganathan street lo stampede type situation. Oka pregnant lady and child collapsed. Send ambulance fast!",
+      "language": "Telugu-English",
+      "timestamp": "08:34 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-301",
+      "source": "audio_call",
+      "sender": "108 Medical Helpline #301",
+      "rawText": "Heavy crowd surge at T. Nagar Ranganathan Street festival sale, 5 people collapsed unconscious due to suffocation.",
+      "language": "English",
+      "timestamp": "08:30 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-208",
+      "source": "field_responder",
+      "sender": "District Fire Officer",
+      "rawText": "Chemical fire at Ambattur controlled and cooling operations underway. Zero casualties.",
+      "language": "English",
+      "timestamp": "09:15 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-207",
+      "source": "audio_call",
+      "sender": "108 Ambulance Dispatch",
+      "rawText": "Two ambulances standing by at Ambattur industrial gate. Injured receiving burn triage.",
+      "language": "English",
+      "timestamp": "08:32 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-206",
+      "source": "whatsapp",
+      "sender": "Local Shopkeeper +91-9791028374",
+      "rawText": "Ambattur industrial estate road completely blocked with fire engines and police barricades.",
+      "language": "English",
+      "timestamp": "08:28 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-205",
+      "source": "field_responder",
+      "sender": "Ambattur Fire Tender 1",
+      "rawText": "Firefighters deployed on site at Ambattur SIDCO. 4 workers extracted with minor burn injuries.",
+      "language": "English",
+      "timestamp": "08:20 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-204",
+      "source": "sms",
+      "sender": "Factory Supervisor +91-9841029384",
+      "rawText": "Flammable solvents burning in Unit 14 Ambattur. Need 4 fire tenders and foam units immediately.",
+      "language": "English",
+      "timestamp": "08:02 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-203",
+      "source": "social_media",
+      "sender": "Twitter @chennai_traffic_watch",
+      "rawText": "Explosions heard at SIDCO Ambattur paint factory. Smoke visible from 5 km away.",
+      "language": "English",
+      "timestamp": "07:55 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-202",
+      "source": "whatsapp",
+      "sender": "Ambattur Factory Workers WA",
+      "rawText": "Ambattur estate lo pedda manta vacchindi, 4 workers inside trapped unnaru! Fire engine urgent!",
+      "language": "Telugu-English",
+      "timestamp": "07:50 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-201",
+      "source": "audio_call",
+      "sender": "101 Fire Call #201",
+      "rawText": "Massive chemical warehouse fire at Ambattur Industrial Estate Phase 2. Thick black smoke rising.",
+      "language": "English",
+      "timestamp": "07:45 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-110",
+      "source": "sms",
+      "sender": "SMS +91-9884112233",
+      "rawText": "Power cut near Velachery MRTS behind station. Elderly patient needs oxygen support.",
+      "language": "English",
+      "timestamp": "08:35 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-109",
+      "source": "social_media",
+      "sender": "Instagram @chennai_updates",
+      "rawText": "Drone visual showing Velachery MRTS west gate submerged. Relief team arriving.",
+      "language": "English",
+      "timestamp": "08:52 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-108",
+      "source": "audio_call",
+      "sender": "112 Call #118",
+      "rawText": "Velachery MRTS station daggara water level chala ekkuva undi, boats kavali urgent ga.",
+      "language": "Telugu-English",
+      "timestamp": "08:31 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-107",
+      "source": "whatsapp",
+      "sender": "Resident Group Velachery",
+      "rawText": "Opposite the medical shop near the station backside road water is neck deep, family shouting for help.",
+      "language": "English",
+      "timestamp": "08:22 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-106",
+      "source": "field_responder",
+      "sender": "Fire & Rescue Station Officer",
+      "rawText": "All 10 residents including the elderly person evacuated safely. Everyone rescued.",
+      "language": "English",
+      "timestamp": "09:30 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-105",
+      "source": "field_responder",
+      "sender": "NDRF Unit 4 Radio",
+      "rawText": "NDRF Rescue boat team reached the building behind MRTS west gate. Extraction underway.",
+      "language": "English",
+      "timestamp": "09:05 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-104",
+      "source": "social_media",
+      "sender": "Twitter @chennai_flood_alert",
+      "rawText": "Velachery MRTS daggara water chala perigindi rapidly rising, immediate rescue boat needed!",
+      "language": "Telugu-English",
+      "timestamp": "08:40 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-103",
+      "source": "sms",
+      "sender": "SMS +91-9444012345",
+      "rawText": "Update from MRTS west gate: count is 10 people now trapped on the roof terrace as water reaches 4 feet.",
+      "language": "English",
+      "timestamp": "08:25 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-102",
+      "source": "whatsapp",
+      "sender": "WhatsApp +91-9840123451",
+      "rawText": "Station venakala Vijayanagar side lo water vachindi, same place an elderly person inside lo unnaru.",
+      "language": "Telugu-English",
+      "timestamp": "08:16 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-101",
+      "source": "audio_call",
+      "sender": "112 Call #101",
+      "rawText": "Water entered houses near Velachery MRTS west gate, 6 people trapped inside.",
+      "language": "English",
+      "timestamp": "08:10 AM",
+      "isDemoConnector": true
+    }
+  ],
+  "noiseReports": [
+    {
+      "id": "SIG-905",
+      "source": "social_media",
+      "sender": "Twitter @chennai_food_lover",
+      "rawText": "Best biryani near T Nagar Ranganathan street? Craving spicy food in this rainy weather.",
+      "language": "English",
+      "timestamp": "08:41 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-901",
+      "source": "social_media",
+      "sender": "Twitter @foodie_chennai",
+      "rawText": "Traffic is heavy near Velachery bypass road today. Anyone know why Swiggy delivery is delayed?",
+      "language": "English",
+      "timestamp": "08:14 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-408",
+      "source": "field_responder",
+      "sender": "Highway Patrol Inspector",
+      "rawText": "Third victim extracted safely. Wreckage cleared to emergency lane. Traffic moving slowly.",
+      "language": "English",
+      "timestamp": "09:20 AM",
+      "isDemoConnector": true
+    },
+    {
+      "id": "SIG-405",
+      "source": "field_responder",
+      "sender": "Highway Patrol Team #09",
+      "rawText": "Highway patrol on scene at Sholinganallur. Traffic halted on northbound carriageway. Extrication in progress.",
+      "language": "English",
+      "timestamp": "08:24 AM",
+      "isDemoConnector": true
+    }
+  ],
+  "unverifiedReports": [
+    {
+      "id": "SIG-908",
+      "source": "social_media",
+      "sender": "Twitter @anonymous_rumor",
+      "rawText": "Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.",
+      "language": "English",
+      "timestamp": "08:58 AM",
+      "isDemoConnector": true
+    }
+  ],
+  "lastAnalysis": {
+    "classification": "unverified",
+    "classificationConfidence": 0.76,
+    "incidentType": "other",
+    "location": {
+      "raw": "Someone said maybe 20 people are trapped somewhere in south chennai, unverified forwarded message.",
+      "normalized": "Approximate Urban Sector, Chennai",
+      "landmarks": [
+        "Local vicinity"
+      ],
+      "area": "Chennai Metropolitan Area",
+      "direction": "General",
+      "nearbyBuilding": "",
+      "relativePosition": "Vicinity",
+      "latitude": null,
+      "longitude": null,
+      "confidence": 0.85,
+      "isApproximate": true
+    },
+    "people": {
+      "affected": 20,
+      "trapped": 20,
+      "vulnerable": []
+    },
+    "urgency": "critical",
+    "severity": "high",
+    "resources": [],
+    "status": "unverified",
+    "language": "English",
+    "confidence": 0.93,
+    "uncertainties": [
+      "Exact street address not specified in audio/text report"
+    ],
+    "evidence": [
+      "Normalized Landmark: Approximate Urban Sector, Chennai",
+      "Detected Language: English",
+      "Signal Urgency: CRITICAL"
+    ],
+    "match": {
+      "sameIncident": false,
+      "matchedIncidentId": null,
+      "similarityScore": 0,
+      "reason": "New distinct emergency sector identified.",
+      "factors": {
+        "landmarkMatch": 0,
+        "locationContext": 0,
+        "semanticSimilarity": 0,
+        "timeCompatibility": 0,
+        "incidentTypeMatch": 0
+      }
+    },
+    "conflictDetection": {
+      "hasConflict": false,
+      "field": null,
+      "previousValue": null,
+      "newValue": null,
+      "explanation": null
+    },
+    "resolutionDetection": {
+      "isResolution": false,
+      "details": null
+    },
+    "explanations": {
+      "whySameIncident": "Unique geographical centroid and distinct situation semantics. No overlapping landmark signature with active incidents.",
+      "whyCritical": "Elevated to CRITICAL due to: 20 persons trapped, escalating hazard kinetics, and rapid water ingress/hazard propagation.",
+      "whyApproximateLocation": "Report references descriptive urban landmarks ('vicinity') rather than high-precision GPS telemetry. Marked as approximate centroid to prevent false positional certainty."
+    },
+    "aiExecutionMode": "simulated_engine",
+    "aiStatusMessage": "GEMINI_API_KEY not configured in server environment. Operating in Deterministic Simulation Demo Engine.",
+    "summary": {
+      "responderBrief": "CRITICAL OTHER at Approximate Urban Sector, Chennai. 20 people affected. Advisory units: First responders.",
+      "immediateRisks": [
+        "Evolving hazard in urban sector requiring immediate responder reconnaissance."
+      ],
+      "immediateRisksTelugu": [
+        "తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి."
+      ],
+      "safeNextSteps": [
+        "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+        "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+        "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+        "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts."
+      ],
+      "safeNextStepsTelugu": [
+        "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు.",
+        "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి.",
+        "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి.",
+        "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+      ],
+      "actionChecklist": [
+        {
+          "step": 1,
+          "category": "citizen",
+          "priority": "immediate",
+          "instruction": "Follow emergency evacuation route signs. Take stairs only; never enter elevators.",
+          "instructionTelugu": "అత్యవసర నిష్క్రమణ గుర్తులను అనుసరించండి. మెట్లు మాత్రమే ఉపయోగించండి, లిఫ్ట్ వద్దకు వెళ్లవద్దు."
+        },
+        {
+          "step": 2,
+          "category": "citizen",
+          "priority": "high",
+          "instruction": "Keep emergency grab-bag ready with drinking water, identification documents, and essential medications.",
+          "instructionTelugu": "త్రాగునీరు, గుర్తింపు కార్డులు, అవసరమైన మందులతో కూడిన బ్యాగ్‌ను వెంట ఉంచుకోండి."
+        },
+        {
+          "step": 3,
+          "category": "responder",
+          "priority": "immediate",
+          "instruction": "Establish triage cordon, organize shuttle buses to nearest designated relief shelter, and register evacuees.",
+          "instructionTelugu": "పునరావాస కేంద్రాలకు రవాణా బస్సులను ఏర్పాటు చేయండి మరియు బాధితుల పేర్లను నమోదు చేయండి."
+        },
+        {
+          "step": 4,
+          "category": "citizen",
+          "priority": "advisory",
+          "instruction": "Do not spread unverified rumors. Rely only on official District Collectorate / SDMA broadcasts.",
+          "instructionTelugu": "నిరూపించబడని పుకార్లను నమ్మవద్దు మరియు వ్యాప్తి చేయవద్దు. అధికారిక సమాచారం మాత్రమే పాటించండి."
+        }
+      ],
+      "recommendedContacts": [
+        {
+          "service": "National Emergency Response Support System (ERSS)",
+          "number": "112",
+          "category": "national",
+          "description": "All-in-one unified emergency helpline across India (Police, Fire, Ambulance, Disaster). Available 24/7.",
+          "descriptionTelugu": "భారతదేశ వ్యాప్తంగా ఏకీకృత అత్యవసర హెల్ప్‌లైన్ (పోలీస్, ఫైర్, అంబులెన్స్, విపత్తు). 24/7 అందుబాటులో ఉంటుంది.",
+          "isVerified": true,
+          "hours": "24/7 / 365 Days"
+        },
+        {
+          "service": "Fire & Rescue Services",
+          "number": "101",
+          "category": "national",
+          "description": "Immediate fire brigade dispatch and structural collapse extraction.",
+          "descriptionTelugu": "అగ్నిమాపక మరియు రక్షణ దళాల తక్షణ సహాయం.",
+          "isVerified": true,
+          "hours": "24/7"
+        },
+        {
+          "service": "Women Distress Helpline",
+          "number": "1091",
+          "category": "national",
+          "description": "Immediate safety support and crisis response for women.",
+          "descriptionTelugu": "మహిళల భద్రత మరియు అత్యవసర సహాయ హెల్ప్‌లైన్.",
+          "isVerified": true,
+          "hours": "24/7"
+        },
+        {
+          "service": "National Childline Emergency",
+          "number": "1098",
+          "category": "national",
+          "description": "Rescue and protection for unaccompanied minors, lost children, and infants in crisis.",
+          "descriptionTelugu": "ఆపదలో ఉన్న పిల్లల కోసం జాతీయ రక్షణ హెల్ప్‌లైన్.",
+          "isVerified": true,
+          "hours": "24/7"
+        }
+      ]
+    }
+  },
+  "activeDemoStep": 0
+}

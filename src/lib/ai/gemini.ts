@@ -8,6 +8,10 @@ import {
   IncidentClassification,
 } from '@/types';
 import { resolveApproximateLandmark } from '@/lib/data/known-locations';
+import {
+  getActionChecklistForIncident,
+  VERIFIED_EMERGENCY_CONTACTS,
+} from '@/lib/data/emergency-directory';
 
 /**
  * ONE GEMINI AI SERVICE
@@ -19,6 +23,68 @@ import { resolveApproximateLandmark } from '@/lib/data/known-locations';
  * Adheres strictly to the single-model architecture decision:
  * ONE AI BRAIN -> MANY EMERGENCY SIGNALS -> ONE CLEAR INCIDENT PICTURE
  */
+
+function enrichAnalysisResult(
+  result: any,
+  rawText: string,
+  language: string,
+  isLive: boolean,
+  statusMsg: string
+): AnalysisResult {
+  const isTelugu = language.toLowerCase().includes('telugu') || /[\u0C00-\u0C7F]/.test(rawText);
+  const checklist = getActionChecklistForIncident(result.incidentType, result.urgency, isTelugu);
+
+  const relevantContacts = VERIFIED_EMERGENCY_CONTACTS.filter((c) => {
+    if (result.incidentType === 'fire') return c.category === 'national' || c.number === '101' || c.number === '112';
+    if (result.incidentType === 'medical') return c.category === 'medical' || c.number === '108' || c.number === '112';
+    if (result.incidentType === 'flood') return c.category === 'disaster' || c.number === '112' || c.number === '1070';
+    return c.number === '112' || c.category === 'national';
+  }).slice(0, 4);
+
+  const peopleText = result.people.affected !== null ? `${result.people.affected} people affected` : 'People count unconfirmed';
+  const vulnText = result.people.vulnerable.length > 0 ? ` (${result.people.vulnerable.map((v: any) => v.type).join(', ')})` : '';
+
+  const immediateRisks = [
+    result.incidentType === 'flood'
+      ? 'Rapid water rise threatening ground-floor entrapment and electrical hazards.'
+      : result.incidentType === 'fire'
+      ? 'Smoke inhalation hazard, active flame propagation, and structural instability.'
+      : result.incidentType === 'medical'
+      ? 'Acute vital risk requiring emergency paramedic life support.'
+      : 'Evolving hazard in urban sector requiring immediate responder reconnaissance.',
+    ...(result.people.vulnerable.length > 0
+      ? [`Identified vulnerable persons${vulnText} requiring priority extraction.`]
+      : []),
+  ];
+
+  const immediateRisksTelugu = [
+    result.incidentType === 'flood'
+      ? 'వరద నీరు వేగంగా పెరగడం వల్ల నేల అంతస్తులో ఇరుక్కుపోయే ప్రమాదం.'
+      : result.incidentType === 'fire'
+      ? 'దట్టమైన పొగ మరియు మంటలు వ్యాపించే ప్రమాదం.'
+      : 'తక్షణ సహాయం అవసరమైన అత్యవసర పరిస్థితి.',
+    ...(result.people.vulnerable.length > 0
+      ? ['రక్షణ బృందాలు మొదట రక్షించవలసిన వృద్ధులు లేదా పిల్లలు ఉన్నారు.']
+      : []),
+  ];
+
+  const safeNextSteps = checklist.map((c) => c.instruction);
+  const safeNextStepsTelugu = checklist.map((c) => c.instructionTelugu);
+
+  result.aiExecutionMode = isLive ? 'live_gemini' : 'simulated_engine';
+  result.aiStatusMessage = statusMsg;
+  result.summary = {
+    responderBrief: `${result.urgency.toUpperCase()} ${result.incidentType.toUpperCase()} at ${result.location.normalized}. ${peopleText}${vulnText}. Advisory units: ${result.resources.join(', ') || 'First responders'}.`,
+    immediateRisks,
+    immediateRisksTelugu,
+    safeNextSteps,
+    safeNextStepsTelugu,
+    actionChecklist: checklist,
+    recommendedContacts: relevantContacts,
+  };
+
+  return result;
+}
 
 const GEMINI_SYSTEM_PROMPT = `
 You are the SINGLE AI BRAIN for ResQAI (Emergency Response Assistant).
@@ -64,23 +130,46 @@ export async function analyzeEmergencySignal(
   existingIncidents: Incident[] = []
 ): Promise<AnalysisResult> {
   const apiKey = process.env.GEMINI_API_KEY;
+  const isKeyConfigured = Boolean(apiKey && apiKey.trim() !== '' && apiKey !== 'your_gemini_api_key_here');
 
-  if (apiKey) {
+  if (isKeyConfigured) {
     try {
-      const result = await callGeminiLiveApi(apiKey, signal, existingIncidents);
+      const result = await callGeminiLiveApi(apiKey!, signal, existingIncidents);
       if (result) {
-        return postProcessWithLandmarkRef(result, signal.rawText);
+        const postProcessed = postProcessWithLandmarkRef(result, signal.rawText);
+        return enrichAnalysisResult(
+          postProcessed,
+          signal.rawText,
+          signal.language,
+          true,
+          'Analyzed via Google Gemini API (gemini-1.5-flash) - Single AI Brain'
+        );
       }
-    } catch (error) {
+    } catch (error: any) {
       console.warn(
         'Gemini Live API encountered an error. Falling back to deterministic intelligence engine:',
-        error
+        error?.message || error
+      );
+      const fallbackResult = analyzeDeterministicFallback(signal, existingIncidents);
+      return enrichAnalysisResult(
+        fallbackResult,
+        signal.rawText,
+        signal.language,
+        false,
+        `Gemini API request failed (${error?.message || 'offline'}). Operating in Deterministic Simulation Engine.`
       );
     }
   }
 
   // Fallback to deterministic intelligence engine (NO OTHER LLM IS EVER CALLED)
-  return analyzeDeterministicFallback(signal, existingIncidents);
+  const fallback = analyzeDeterministicFallback(signal, existingIncidents);
+  return enrichAnalysisResult(
+    fallback,
+    signal.rawText,
+    signal.language,
+    false,
+    'GEMINI_API_KEY not configured in server environment. Operating in Deterministic Simulation Demo Engine.'
+  );
 }
 
 /**
@@ -178,37 +267,50 @@ Return strict JSON conforming to:
 }
 `;
 
-  // Call Gemini API via standard fetch with generationConfig
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: 'user',
-            parts: [{ text: `${GEMINI_SYSTEM_PROMPT}\n\n${userPrompt}` }],
+  const model = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+  try {
+    // Call Gemini API via standard fetch with generationConfig
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: `${GEMINI_SYSTEM_PROMPT}\n\n${userPrompt}` }],
+            },
+          ],
+          generationConfig: {
+            responseMimeType: 'application/json',
+            temperature: 0.1,
           },
-        ],
-        generationConfig: {
-          responseMimeType: 'application/json',
-          temperature: 0.1,
-        },
-      }),
+        }),
+      }
+    );
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+    const data = await response.json();
+    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!rawText) return null;
+
+    const cleaned = rawText.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim();
+    const parsed = JSON.parse(cleaned) as AnalysisResult;
+    return parsed;
+  } catch (err) {
+    clearTimeout(timeoutId);
+    throw err;
   }
-
-  const data = await response.json();
-  const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!rawText) return null;
-
-  const parsed = JSON.parse(rawText) as AnalysisResult;
-  return parsed;
 }
 
 /**
@@ -242,7 +344,7 @@ function postProcessWithLandmarkRef(
 function analyzeDeterministicFallback(
   signal: EmergencySignal,
   existingIncidents: Incident[]
-): AnalysisResult {
+): Omit<AnalysisResult, 'aiExecutionMode' | 'aiStatusMessage' | 'summary'> {
   const text = signal.rawText.toLowerCase();
 
   // 1. Language Detection

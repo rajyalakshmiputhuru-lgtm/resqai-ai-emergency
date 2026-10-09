@@ -1,10 +1,24 @@
 import { NextResponse } from 'next/server';
-import { getStore, ingestSignal, seedFullBenchmarkDataset, resetStore } from '@/lib/store/incident-store';
+import {
+  getStore,
+  ingestSignal,
+  seedFullBenchmarkDataset,
+  resetStore,
+  updateIncidentStatus,
+  addResponderNote,
+  generateIncidentsCsv,
+} from '@/lib/store/incident-store';
+import { VERIFIED_EMERGENCY_CONTACTS } from '@/lib/data/emergency-directory';
 import { EmergencySignal } from '@/types';
 
 function computeStats(store: ReturnType<typeof getStore>) {
   const activeIncidents = store.incidents.filter(
-    (i) => i.status === 'active' || i.status === 'rescue_in_progress'
+    (i) =>
+      i.status === 'active' ||
+      i.status === 'rescue_in_progress' ||
+      i.status === 'responding' ||
+      i.status === 'submitted' ||
+      i.status === 'reviewing'
   ).length;
 
   const critical = store.incidents.filter((i) => i.urgency === 'critical').length;
@@ -15,7 +29,7 @@ function computeStats(store: ReturnType<typeof getStore>) {
   );
 
   const rescueInProgress = store.incidents.filter(
-    (i) => i.status === 'rescue_in_progress'
+    (i) => i.status === 'rescue_in_progress' || i.status === 'responding'
   ).length;
 
   const resolved = store.incidents.filter((i) => i.status === 'resolved').length;
@@ -45,16 +59,15 @@ function computeStats(store: ReturnType<typeof getStore>) {
 
 export async function GET() {
   const store = getStore();
-
-  // If store is empty on first boot, initialize with seed data if needed
   const stats = computeStats(store);
 
   return NextResponse.json({
     success: true,
     incidents: store.incidents,
-    rawReports: store.rawReports.slice(0, 30),
+    rawReports: store.rawReports.slice(0, 40),
     noiseReports: store.noiseReports,
     lastAnalysis: store.lastAnalysis,
+    emergencyContacts: VERIFIED_EMERGENCY_CONTACTS,
     stats,
   });
 }
@@ -62,8 +75,9 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { action, signal } = body;
+    const { action, signal, incidentId, status, responderNotes, author, text } = body;
 
+    // 1. Seed Benchmark Dataset
     if (action === 'seed_full') {
       await seedFullBenchmarkDataset();
       const store = getStore();
@@ -75,6 +89,7 @@ export async function POST(request: Request) {
       });
     }
 
+    // 2. Reset
     if (action === 'reset') {
       resetStore();
       const store = getStore();
@@ -86,6 +101,66 @@ export async function POST(request: Request) {
       });
     }
 
+    // 3. Update Incident Status
+    if (action === 'update_status') {
+      if (!incidentId || !status) {
+        return NextResponse.json(
+          { error: 'incidentId and status are required' },
+          { status: 400 }
+        );
+      }
+      const updated = updateIncidentStatus(incidentId, status, responderNotes);
+      if (!updated) {
+        return NextResponse.json(
+          { error: `Incident ${incidentId} not found` },
+          { status: 404 }
+        );
+      }
+      const store = getStore();
+      return NextResponse.json({
+        success: true,
+        incident: updated,
+        incidents: store.incidents,
+        stats: computeStats(store),
+      });
+    }
+
+    // 4. Add Responder Note
+    if (action === 'add_note') {
+      if (!incidentId || !text) {
+        return NextResponse.json(
+          { error: 'incidentId and text are required' },
+          { status: 400 }
+        );
+      }
+      const updated = addResponderNote(incidentId, author || 'Responder', text);
+      if (!updated) {
+        return NextResponse.json(
+          { error: `Incident ${incidentId} not found` },
+          { status: 404 }
+        );
+      }
+      const store = getStore();
+      return NextResponse.json({
+        success: true,
+        incident: updated,
+        incidents: store.incidents,
+      });
+    }
+
+    // 5. Export CSV
+    if (action === 'export_csv') {
+      const csvData = generateIncidentsCsv();
+      return new NextResponse(csvData, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/csv; charset=utf-8',
+          'Content-Disposition': `attachment; filename="resqai-incidents-${Date.now()}.csv"`,
+        },
+      });
+    }
+
+    // 6. Ingest Signal (Citizen Report or Field Radio)
     if (!signal || !signal.rawText) {
       return NextResponse.json(
         { error: 'Valid signal object with rawText is required' },
@@ -99,7 +174,9 @@ export async function POST(request: Request) {
       sender: signal.sender || 'Direct Ingestion',
       rawText: signal.rawText,
       language: signal.language || 'English',
-      timestamp: signal.timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      timestamp:
+        signal.timestamp ||
+        new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       isDemoConnector: signal.isDemoConnector ?? false,
     };
 

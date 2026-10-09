@@ -22,7 +22,12 @@ export type IncidentStatus =
   | 'active'
   | 'rescue_in_progress'
   | 'resolved'
-  | 'unverified';
+  | 'unverified'
+  | 'submitted'
+  | 'reviewing'
+  | 'responding';
+
+export type AIExecutionMode = 'live_gemini' | 'simulated_engine';
 
 export interface LocationIntelligence {
   raw: string;
@@ -97,6 +102,41 @@ export interface AIExplanations {
   whyApproximateLocation?: string;
 }
 
+export interface ActionChecklistItem {
+  step: number;
+  instruction: string;
+  instructionTelugu: string;
+  category: 'citizen' | 'responder' | 'medical';
+  priority: 'immediate' | 'high' | 'advisory';
+}
+
+export interface VerifiedEmergencyContact {
+  service: string;
+  number: string;
+  category: 'national' | 'state' | 'city' | 'medical' | 'disaster';
+  description: string;
+  descriptionTelugu?: string;
+  isVerified: boolean;
+  hours: string;
+}
+
+export interface IncidentSummary {
+  responderBrief: string;
+  immediateRisks: string[];
+  immediateRisksTelugu?: string[];
+  safeNextSteps: string[];
+  safeNextStepsTelugu: string[];
+  actionChecklist: ActionChecklistItem[];
+  recommendedContacts: VerifiedEmergencyContact[];
+}
+
+export interface ResponderNote {
+  id: string;
+  timestamp: string;
+  author: string;
+  text: string;
+}
+
 export interface AnalysisResult {
   classification: IncidentClassification;
   classificationConfidence: number;
@@ -115,6 +155,9 @@ export interface AnalysisResult {
   conflictDetection: ConflictDetection;
   resolutionDetection: ResolutionDetection;
   explanations: AIExplanations;
+  aiExecutionMode: AIExecutionMode;
+  aiStatusMessage: string;
+  summary: IncidentSummary;
 }
 
 export interface WhatChangedEntry {
@@ -149,6 +192,9 @@ export interface Incident {
   updatedAt: string;
   conflictCount: number;
   aiExplanations: AIExplanations;
+  isDemoRecord?: boolean;
+  summary?: IncidentSummary;
+  notes?: ResponderNote[];
 }
 
 export interface PipelineStep {

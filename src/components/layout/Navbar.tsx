@@ -12,9 +12,23 @@ import {
   Radio,
   BarChart3,
   Award,
+  Send,
+  Shield,
+  PhoneCall,
+  BookOpen,
+  Download,
+  Activity,
 } from 'lucide-react';
 
-export type ActiveTab = 'dashboard' | 'ingestion' | 'analytics' | 'judge';
+export type ActiveTab =
+  | 'dashboard'
+  | 'report'
+  | 'responder'
+  | 'resources'
+  | 'ingestion'
+  | 'analytics'
+  | 'about'
+  | 'judge';
 
 interface NavbarProps {
   activeTab: ActiveTab;
@@ -33,13 +47,20 @@ export default function Navbar({
   onReset,
   isLoading,
 }: NavbarProps) {
+  function handleDownloadCsv() {
+    window.open('/api/export', '_blank');
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/95 backdrop-blur-md">
       {/* Top Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Tagline */}
-          <div className="flex items-center gap-3">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => setActiveTab('dashboard')}
+          >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-amber-600 flex items-center justify-center shadow-lg shadow-red-900/30 border border-red-400/30">
               <ShieldAlert className="w-6 h-6 text-white" />
             </div>
@@ -60,7 +81,17 @@ export default function Navbar({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Quick Export CSV */}
+            <button
+              onClick={handleDownloadCsv}
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-300 hover:text-white font-medium text-xs border border-slate-700 transition"
+              title="Download Incident Database as CSV"
+            >
+              <Download className="w-3.5 h-3.5 text-cyan-400" />
+              <span>CSV</span>
+            </button>
+
             {/* Start Live Demo */}
             <button
               onClick={onStartLiveDemo}
@@ -109,25 +140,66 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs (Horizontal Scroll on Mobile) */}
         <div className="flex items-center gap-1 overflow-x-auto py-1 border-t border-slate-800/60 no-scrollbar">
+          {/* Tab 1: Operations Dashboard */}
           <button
             onClick={() => setActiveTab('dashboard')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
               activeTab === 'dashboard'
-                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30'
+                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30 font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
             }`}
           >
             <LayoutDashboard className="w-3.5 h-3.5" />
-            Responder Dashboard
+            Live Dashboard
           </button>
 
+          {/* Tab 2: Report Incident (Citizen / AI Triage) */}
+          <button
+            onClick={() => setActiveTab('report')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
+              activeTab === 'report'
+                ? 'bg-red-950/70 text-red-300 border border-red-500/40 font-semibold'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+            }`}
+          >
+            <Send className="w-3.5 h-3.5 text-red-400" />
+            Report / AI Triage
+          </button>
+
+          {/* Tab 3: Tactical Responder Command */}
+          <button
+            onClick={() => setActiveTab('responder')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
+              activeTab === 'responder'
+                ? 'bg-blue-950/70 text-blue-300 border border-blue-500/40 font-semibold'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+            }`}
+          >
+            <Shield className="w-3.5 h-3.5 text-blue-400" />
+            Responder Command
+          </button>
+
+          {/* Tab 4: Emergency Resource Directory */}
+          <button
+            onClick={() => setActiveTab('resources')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
+              activeTab === 'resources'
+                ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40 font-semibold'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+            }`}
+          >
+            <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+            Emergency Contacts
+          </button>
+
+          {/* Tab 5: Live Ingestion Console */}
           <button
             onClick={() => setActiveTab('ingestion')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
               activeTab === 'ingestion'
-                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30'
+                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30 font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
             }`}
           >
@@ -135,28 +207,43 @@ export default function Navbar({
             Live Ingestion Console
           </button>
 
+          {/* Tab 6: Analytics & Triage Metrics */}
           <button
             onClick={() => setActiveTab('analytics')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
               activeTab === 'analytics'
-                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30'
+                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30 font-semibold'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
             }`}
           >
             <BarChart3 className="w-3.5 h-3.5" />
-            Analytics & Triage Metrics
+            Analytics & Metrics
           </button>
 
+          {/* Tab 7: About & Architecture */}
+          <button
+            onClick={() => setActiveTab('about')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
+              activeTab === 'about'
+                ? 'bg-slate-800 text-cyan-400 border border-cyan-500/30 font-semibold'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            About & Architecture
+          </button>
+
+          {/* Tab 8: Judge Walkthrough */}
           <button
             onClick={() => setActiveTab('judge')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap ${
               activeTab === 'judge'
-                ? 'bg-amber-950/60 text-amber-300 border border-amber-500/40'
+                ? 'bg-amber-950/60 text-amber-300 border border-amber-500/40 font-semibold'
                 : 'text-slate-400 hover:text-amber-300 hover:bg-slate-900/60'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Judge Architecture Walkthrough
+            Judge Walkthrough
           </button>
         </div>
       </div>
