@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: resqai-ai-emergency-response
+    name: resqai-ai-emergency
     env: node
     plan: free
     region: oregon
@@ -10,7 +10,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3000
       - key: GEMINI_API_KEY
         sync: false
